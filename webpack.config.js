@@ -3,7 +3,6 @@ const paths = require("./config/paths");
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const getClientEnvironment = require('./config/env');
@@ -109,8 +108,6 @@ module.exports = {
                 screw_ie8: true
             }
         }),
-
-        new ExtractTextPlugin("styles.css"),
 
         // Generate a manifest file which contains a mapping of all asset filenames
         // to their corresponding output file so that tools can pick it up without
