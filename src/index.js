@@ -7,7 +7,7 @@ class Toto extends Component {
     render() {
         return (
             <div>
-                <p>My name is Jean</p>
+                <p>My name is Yann</p>
                 <Tata/>
             </div>
 

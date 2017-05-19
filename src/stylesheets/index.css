@@ -3,5 +3,9 @@
 }
 #app {
   height: 200px;
-  border: 4px solid #f00;
+  border: 4px solid #a52a2a;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background-color: #d4d3d2;
 }
