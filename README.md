@@ -20,7 +20,7 @@ then go to localhost:8080
 npm run build
 then go to localhost:8080
 
-#Troubleshooting
+# Troubleshooting
 If the build folder is empty just comment those following line in server/server.js :
 ```
 const manifestPath = path.resolve(__dirname, './../dist/build/asset-manifest.json');
