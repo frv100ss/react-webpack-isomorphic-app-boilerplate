@@ -4,16 +4,12 @@ This `boilerplate` for ***```ReactJS```*** aim to run **`universal rendering`** 
 
 **It comes with the new `React-Router V4`**
 
-* In production mode : <br> 
+* **In production mode :** <br> 
 It runs **`server side rendering`** and **`asynchronous routes`** on client side <br>
 
-* In development mode : <br>
+* **In development mode** : <br>
 It runs **`react-hot-loader`** and **`synchronous routes`** <br>
 **`Server side rendering`** is not able in this mode
-
-##### `git clone https://github.com/frv100ss/Isomorph-app.git`
-##### `npm install` 
-
 
 ## Download the boilerplate and install all required dependencies
 
