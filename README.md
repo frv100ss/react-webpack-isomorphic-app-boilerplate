@@ -8,7 +8,7 @@ This `boilerplate` for ***```ReactJS```*** aim to run **`universal rendering`** 
 It runs **`server side rendering`** and **`asynchronous routes`** on client side <br>
 
 * In development mode : <br>
-It runs **`react-hot-loader` and **`synchronous routes`
+It runs **`react-hot-loader`** and **`synchronous routes`**
 **`Server side rendering`** is not able in this mode
 
 ##### `git clone https://github.com/frv100ss/Isomorph-app.git`
