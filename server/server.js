@@ -13,17 +13,17 @@ import {renderToString} from "react-dom/server";
 import {StaticRouter} from "react-router-dom";
 //Here we just retrieve our assets and then inject our bundles into our template
 //This is needed only in production mode for server side rendering
-const manifestPath = path.resolve(__dirname, './../dist/build/asset-manifest.json');
+const manifestPath = path.resolve(__dirname, '../dist/build/asset-manifest.json');
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const bundleJS = manifest['main.js'];
 const bundleCSS = manifest['main.css'];
 //Stuff here is just required for dev mode to get the hot reloading functionality activated
 const webpack = require('webpack');
-const webpackConfig = require('./../webpack.config');
+const webpackConfig = require('../webpack.config');
 const compiler = webpack(webpackConfig);
 //App is a wrapper including staticRouter + apiRouter
 const staticRouter = express();
-const authRoutes = require("./../api/routes/auth");
+const authRoutes = require("../api/routes/auth");
 
 /**
  * Here we're splitting environments based on Node_ENV value

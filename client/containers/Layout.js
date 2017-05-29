@@ -1,9 +1,9 @@
 import { Switch, Route } from 'react-router-dom'
 import React from "react";
-import TopNav from './../components/TopNav'
-import * as Routes from './../routes/Routes'
+import TopNav from '../components/TopNav'
+import * as Routes from '../routes/Routes'
 
-const Layout = props => {
+const Layout = () => {
   return (
     <div>
       <TopNav />

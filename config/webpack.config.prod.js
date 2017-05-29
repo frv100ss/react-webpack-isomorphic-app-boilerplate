@@ -11,7 +11,7 @@ const getClientEnvironment = require('./env');
 const path = require("path");
 const fs = require("fs");
 
-const manifestPath = path.resolve(__dirname, './../dist/build/asset-manifest.json');
+const manifestPath = path.resolve(__dirname, '../dist/build/asset-manifest.json');
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const bundleJS = manifest['main.js'];
 const bundleCSS = manifest['main.css'];

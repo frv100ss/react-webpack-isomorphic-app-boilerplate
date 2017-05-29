@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter} from 'react-router-dom'
-import Layout from './../containers/Layout'
+import Layout from '../containers/Layout'
 
 const App = () => (
   <BrowserRouter>
