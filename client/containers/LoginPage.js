@@ -7,7 +7,6 @@ class LoginPage extends React.Component {
    */
   constructor(props) {
     super(props);
-    this.mounted = false;
     this.processForm = this.processForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
@@ -21,20 +20,8 @@ class LoginPage extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.mounted = true;
-    console.log('ComponentDidMount');
-  }
-
-  componentWillUnmount() {
-    this.mounted = false;
-    console.log('componentWillUnmount');
-  }
-
   handleChange(event) {
-    console.log('mountedOrNot', this.mounted);
     const field = event.target.name;
-    console.log('lolo', field)
     const user = this.state.user;
     user[field] = event.target.value;
 
@@ -44,8 +31,6 @@ class LoginPage extends React.Component {
   }
 
   processForm(event) {
-
-    console.log('function processForm called');
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
 
@@ -60,7 +45,6 @@ class LoginPage extends React.Component {
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
-      console.log('Loaded')
       if (xhr.status === 200) {
         // success
         // change the component-container state
@@ -78,9 +62,7 @@ class LoginPage extends React.Component {
         });
       }
     });
-    console.log('email:', email);
-    console.log('password', password);
-    console.log('formData', formData);
+
     xhr.send(formData);
   }
   /**

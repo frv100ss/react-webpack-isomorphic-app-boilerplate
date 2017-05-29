@@ -9,7 +9,6 @@ const router = new express.Router();
  *                   errors tips, and a global message for the whole form.
  */
 const checkSignUpForm = (payload) => {
-  console.log('payload', payload);
   const errors = {};
   let isFormValid = true;
   let message = '';
@@ -46,7 +45,6 @@ const checkSignUpForm = (payload) => {
  *                   errors tips, and a global message for the whole form.
  */
 const checkLoginForm = (payload) => {
-  console.log('payload', payload);
   const errors = {};
   let isFormValid = true;
   let message = '';
@@ -85,7 +83,6 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  console.log('Is there a req.body', req.body)
   const validationResult = checkLoginForm(req.body);
   if (!validationResult.success) {
     return res.status(400).json({
