@@ -1,7 +1,6 @@
 import React from "react";
 import SignUpForm from "../components/SignUpForm.js";
 
-
 class SignUpPage extends React.Component {
 
   /**
@@ -21,7 +20,7 @@ class SignUpPage extends React.Component {
     };
 
     this.processForm = this.processForm.bind(this);
-    this.changeUser = this.changeUser.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   /**
@@ -29,7 +28,7 @@ class SignUpPage extends React.Component {
    *
    * @param {object} event - the JavaScript event object
    */
-  changeUser(event) {
+  handleChange(event) {
     const field = event.target.name;
     const user = this.state.user;
     user[field] = event.target.value;
@@ -89,7 +88,7 @@ class SignUpPage extends React.Component {
     return (
       <SignUpForm
         onSubmit={this.processForm}
-        onChange={this.changeUser}
+        onChange={this.handleChange}
         errors={this.state.errors}
         user={this.state.user}
       />
