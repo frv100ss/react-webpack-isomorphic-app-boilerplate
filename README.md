@@ -9,7 +9,7 @@ It runs **`server side rendering`** and **`asynchronous routes`** on client side
 
 * **In development mode** : <br>
 It runs **`react-hot-loader`** and **`synchronous routes`** <br>
-**`Server side rendering`** is not able in this mode
+**`Server side rendering`** is turn off in this mode
 
 ## Download the boilerplate and install all required dependencies
 
