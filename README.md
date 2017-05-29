@@ -1,11 +1,11 @@
 ### Download the boilerplate and install all required dependencies
 
- `git clone https://github.com/frv100ss/Isomorph-app.git`
- `npm install` 
+#### `git clone https://github.com/frv100ss/Isomorph-app.git`
+#### `npm install` 
 
 ### Development environment
 
-`npm run dev`
+#### `npm run dev`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
@@ -17,9 +17,9 @@ You will also see any lint errors in the console.
 * Routes are in **synchronous mode** on client side
 * There is **no server side rendering** 
 
-## Production environment
+### Production environment
 
-`npm run build`
+#### `npm run build`
 
 Runs the app in the production mode.<br>
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
