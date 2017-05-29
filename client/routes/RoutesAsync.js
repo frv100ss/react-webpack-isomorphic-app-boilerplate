@@ -7,12 +7,7 @@ export function asyncComponent(getComponent) {
     constructor(props) {
       super(props);
       this.Component = null;
-      this.mounted = false;
       this.state = {Component: AsyncComponent.Component};
-    }
-
-    componentDidMount() {
-      this.mounted = true;
     }
 
     componentWillMount() {
@@ -20,7 +15,6 @@ export function asyncComponent(getComponent) {
         getComponent().then(Component => {
           AsyncComponent.Component = Component;
           this.setState({Component})
-          console.log('hihihihih', Component)
         })
       }
     }
@@ -45,15 +39,15 @@ const LoadingMsg = () => {
 
 
 export const HomePage = asyncComponent(() =>
-  System.import('./../components/HomePage').then(module => module.default)
+  System.import('../components/HomePage').then(module => module.default)
 );
 
 export const LoginPage = asyncComponent(() =>
-  System.import('./../containers/LoginPage').then(module => module.default)
+  System.import('../containers/LoginPage').then(module => module.default)
 );
 
 export const SignUpPage = asyncComponent(() =>
-  System.import('./../containers/SignUpPage').then(module => module.default)
+  System.import('../containers/SignUpPage').then(module => module.default)
 );
 
 
