@@ -1,27 +1,36 @@
-# First install all required dependencies
+## First download the boilerplate and install all required dependencies
 
-npm install 
+### `git clone https://github.com/frv100ss/Isomorph-app.git`
+### `npm install` 
 
-# Development environment
+## Development environment
 
-* -React hot loader is activated 
-* -Routes are in synchronous mode on client side
-* -There is no server side rendering 
+### `npm run dev`
 
-npm run dev 
-then go to localhost:8080
+Runs the app in the development mode.<br>
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
-# Production environment
+The page will **hot-reload** if you make edits.<br>
+You will also see any lint errors in the console.
 
-* -React hod loader is unactivated 
-* -Routes are asynchronous on client side
-* -server side rendering is activated
+* React hot loader is activated 
+* Routes are in **synchronous mode** on client side
+* There is **no server side rendering** 
 
-npm run build
-then go to localhost:8080
+## Production environment
 
-# Troubleshooting
-If the build folder is empty just comment those following line in server/server.js :
+### `npm run build`
+
+Runs the app in the production mode.<br>
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
+
+* React **hod loader** is **unactivated** 
+* Routes are **asynchronous** on client side
+* **server side rendering** is **activated**
+
+## Troubleshooting
+If the `dist/build` folder is empty, webpack will crash 
+* Just comment or remove those following line in `server/server.js` :
 ```
 const manifestPath = path.resolve(__dirname, './../dist/build/asset-manifest.json');
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
@@ -29,12 +38,10 @@ const bundleJS = manifest['main.js'];
 const bundleCSS = manifest['main.css'];
 ```
 
-then do npm run dev(to rebuild the build folder)
+*Then do `npm run dev` (to rebuild the build folder)
+*Uncomment or replace above lines in `server/server.js` 
+*Then you can do `npm run dev` again or `npm run build`
 
-then uncomment above mentionned lines
-then you can do npm run dev again or npm run build
-
-
-if there is "a unexpected character < error"
-just redo npm run build
+*if there is **an unexpected character < error** with `npm run build`
+*Redo `npm run build` and it should be good
 
