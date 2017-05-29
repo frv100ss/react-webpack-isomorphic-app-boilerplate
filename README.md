@@ -29,8 +29,8 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 * **server side rendering** is **activated**
 
 ### Troubleshooting
-If the `dist/build` folder is empty, webpack will crash 
-* Just comment or remove those following line in `server/server.js` :
+* 1) If the `dist/build` folder is empty, webpack will crash 
+Just comment or remove those following line in `server/server.js` :
 ```
 const manifestPath = path.resolve(__dirname, './../dist/build/asset-manifest.json');
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
@@ -38,10 +38,9 @@ const bundleJS = manifest['main.js'];
 const bundleCSS = manifest['main.css'];
 ```
 
-* Then do `npm run dev` (to rebuild the build folder)
-* Uncomment or replace above lines in `server/server.js` 
-* Then you can do `npm run dev` again or `npm run build`
+Then do `npm run dev` (to rebuild the build folder)
+Uncomment or replace above lines in `server/server.js` 
+Then you can do `npm run dev` again or `npm run build`
 
-* if there is **an unexpected character < error** with `npm run build`
-* Redo `npm run build` and it should be good
-
+* 2) if there is **"an unexpected character < error"** (which means an empty page) with `npm run build`
+Just redo `npm run build` and it should be good
