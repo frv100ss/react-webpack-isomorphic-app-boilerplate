@@ -1,6 +1,6 @@
 ## About
 
-This `boilerplate` for ReactJS aim to run **`universal rendering`** also called **`isomorphic app`** <br>
+This `boilerplate` for ***```ReactJS```*** aim to run **`universal rendering`** also called **`isomorphic app`** <br>
 
 **It comes with the new `React-Router V4`**
 
@@ -15,7 +15,7 @@ It runs **`react-hot-loader` and **`synchronous routes`
 ##### `npm install` 
 
 
-### Download the boilerplate and install all required dependencies
+## Download the boilerplate and install all required dependencies
 
 ##### `git clone https://github.com/frv100ss/Isomorph-app.git`
 ##### `npm install` 
@@ -34,7 +34,7 @@ You will also see any lint errors in the console.
 * Routes are in **synchronous mode** on client side
 * There is **no server side rendering** 
 
-### Production environment
+## Production environment
 
 ##### `npm run build`
 
@@ -45,7 +45,7 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 * Routes are **asynchronous** on client side
 * **server side rendering** is **activated**
 
-### Troubleshooting
+## Troubleshooting
 ##### 1) If the `dist/build` folder is empty, webpack will crash <br> 
 Just comment or remove those following line in `server/server.js` :
 ```
