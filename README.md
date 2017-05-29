@@ -1,6 +1,6 @@
 ## About
 
-This boilerplate for ***```ReactJS```*** aim to run **`universal rendering`** also called **`isomorphic app`** <br>
+This **`webpack-boilerplate`** for _**`ReactJS`**_ aim to run **`universal rendering`** also called **`isomorphic app`** <br>
 
 **It comes with the new `React-Router V4`**
 
