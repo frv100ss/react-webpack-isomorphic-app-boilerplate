@@ -38,10 +38,10 @@ const bundleJS = manifest['main.js'];
 const bundleCSS = manifest['main.css'];
 ```
 
-*Then do `npm run dev` (to rebuild the build folder)
-*Uncomment or replace above lines in `server/server.js` 
-*Then you can do `npm run dev` again or `npm run build`
+* Then do `npm run dev` (to rebuild the build folder)
+* Uncomment or replace above lines in `server/server.js` 
+* Then you can do `npm run dev` again or `npm run build`
 
-*if there is **an unexpected character < error** with `npm run build`
-*Redo `npm run build` and it should be good
+* if there is **an unexpected character < error** with `npm run build`
+* Redo `npm run build` and it should be good
 
