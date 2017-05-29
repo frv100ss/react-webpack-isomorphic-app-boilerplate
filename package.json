@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node scripts/build.js && NODE_ENV=production babel-node server/server.js --presets es2015",
-    "dev": "rm -r dist/build && NODE_ENV=dev && webpack && nodemon server/server.js --exec babel-node --presets es2015 --ignore 'client'",
+    "dev": "node scripts/dev.js && nodemon server/server.js --exec babel-node --presets es2015 --ignore 'client'",
     "test": "mocha --compilers js:babel-core/register ./test/**/**/*.test.js"
   },
   "keywords": [],
