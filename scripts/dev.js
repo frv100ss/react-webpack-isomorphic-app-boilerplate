@@ -38,17 +38,17 @@ measureFileSizesBeforeBuild(paths.appBuild).then(previousFileSizes => {
 });
 
 // Print out errors
- printErrors ((summary, errors) => {
+function printErrors(summary, errors) {
   console.log(chalk.red(summary));
   console.log();
   errors.forEach(err => {
     console.log(err.message || err);
     console.log();
   });
-});
+}
 
 // Create the development bundle and print the deployment instructions.
- build ((previousFileSizes) => {
+function build(previousFileSizes) {
   console.log('Creating development bundle...');
   console.log('Please wait until webpack has build bundle.js file...');
   webpack(config).run((err, stats) => {
@@ -75,11 +75,11 @@ measureFileSizesBeforeBuild(paths.appBuild).then(previousFileSizes => {
     printFileSizesAfterBuild(stats, previousFileSizes);
     console.log();
   });
-});
+}
 
- copyPublicFolder (() => {
+function copyPublicFolder() {
   fs.copySync(paths.appPublic, paths.appBuild, {
     dereference: true,
     filter: file => file !== paths.appHtml
   });
-});
+}
