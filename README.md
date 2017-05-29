@@ -16,7 +16,7 @@ It runs **`react-hot-loader`** and **`synchronous routes`** <br>
 ##### `git clone https://github.com/frv100ss/Isomorph-app.git`
 ##### `npm install` 
 
-### Development environment
+## Development environment
 
 ##### `npm run dev`
 
