@@ -4,11 +4,11 @@ This `boilerplate` for ReactJS aim to run **`universal rendering`** also called 
 **It comes with the new `React-Router V4`**
 
 * In production mode : <br> 
-- It runs **`server side rendering`** and **`asycnhronous routes`** on client side <br>
+It runs **`server side rendering`** and **`asynchronous routes`** on client side <br>
 
 * In development mode : <br>
-- It runs **`react-hot-loader` and **`synchronous routes`
-- **`Server side rendering`** is not able in this mode
+It runs **`react-hot-loader` and **`synchronous routes`
+**`Server side rendering`** is not able in this mode
 
 ##### `git clone https://github.com/frv100ss/Isomorph-app.git`
 ##### `npm install` 
