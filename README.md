@@ -13,7 +13,7 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 The page will **hot-reload** if you make edits.<br>
 You will also see any lint errors in the console.
 
-* React hot loader is activated 
+* React **hot loader is activated** 
 * Routes are in **synchronous mode** on client side
 * There is **no server side rendering** 
 
