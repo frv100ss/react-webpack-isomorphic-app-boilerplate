@@ -40,20 +40,3 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 * React **hod loader** is **unactivated** 
 * Routes are **asynchronous** on client side
 * **server side rendering** is **activated**
-
-## Troubleshooting
-##### 1) If the `dist/build` folder is empty, webpack will crash <br> 
-Just comment or remove those following line in `server/server.js` :
-```
-const manifestPath = path.resolve(__dirname, './../dist/build/asset-manifest.json');
-const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-const bundleJS = manifest['main.js'];
-const bundleCSS = manifest['main.css'];
-```
-
-Then do `npm run dev` (to rebuild the build folder) <br>
-Uncomment or replace above lines in `server/server.js`<br> 
-Then you can do `npm run dev` again or `npm run build`
-
-##### 2) if there is **"an unexpected character < error"** (which means an empty page) with `npm run build` <br>
-Just redo `npm run build` and it should be good

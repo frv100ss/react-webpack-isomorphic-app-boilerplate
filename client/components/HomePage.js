@@ -3,7 +3,7 @@ import {Card, CardTitle} from "material-ui/Card";
 
 const HomePage = () => (
   <Card className="container">
-    <CardTitle title="React Home App" subtitle="This is the home page."/>
+    <CardTitle title="React Home Page" subtitle="This is the Home page."/>
   </Card>
 );
 export default HomePage;
