@@ -2,17 +2,15 @@
 const path = require('path');
 const bodyParser = require("body-parser");
 const express = require("express");
-import template from './views/template';
 // Here is all necessary dependencies useful for (server side) rendering
 // our Layout component in production mode
 import React from "react";
 import Layout from "./../client/containers/Layout";
+import template from './views/template';
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import {renderToString} from "react-dom/server";
-import {CookiesProvider} from 'react-cookie';
 import {StaticRouter} from "react-router-dom";
-
 //Stuff here is just required for dev mode to get the hot reloading functionality activated
 const webpack = require('webpack');
 const webpackConfig = require('../webpack.config');
@@ -21,7 +19,7 @@ const compiler = webpack(webpackConfig);
 const staticRouter = express();
 const authRoutes = require("../server/routes/auth");
 const apiRoutes = require('../server/routes/api');
-
+//stuff to connect database (Mongod)
 const config = require('./config');
 require('../server/models').connect(config.dbUri);
 const passport = require('passport');
@@ -41,13 +39,12 @@ const authCheckMiddleware = require('../server/middleware/auth-check');
  * side rendering activated. This would be neither useful nor easy
  * to setup and we could have some problems with our component state
  **/
-
 const doDevEnv = () => {
     //Let's initialise our compiler then compile....
     staticRouter
         .use(require('webpack-dev-middleware')(compiler, {
-        noInfo: true, publicPath: webpackConfig.output.publicPath
-    }))
+            noInfo: true, publicPath: webpackConfig.output.publicPath
+        }))
         .use(require('webpack-hot-middleware')(compiler))
 };
 
@@ -71,7 +68,6 @@ const doProdEnv = () => {
                 userAgent: 'all',
             });
             const html = renderToString(
-                <CookiesProvider cookies={req.universalCookies}>
                     <MuiThemeProvider muiTheme={muiTheme}>
                         <StaticRouter location={req.url} context={context}>
                             <div id="app-routes">
@@ -79,7 +75,6 @@ const doProdEnv = () => {
                             </div>
                         </StaticRouter>
                     </MuiThemeProvider>
-                </CookiesProvider>
             );
 
             res.send(template({
@@ -94,19 +89,19 @@ staticRouter.get('env') === 'production'
     ? doProdEnv()
     : doDevEnv();
 
-staticRouter
 // tell the server to parse HTTP body messages
+staticRouter
     .use(bodyParser.urlencoded({extended: false}))
-    // pass the passport middleware
+// pass the passport middleware
     .use(passport.initialize())
     .use(bodyParser.json())
     .use('/auth', authRoutes)
     .use('/api', authCheckMiddleware)
     .use('/api', apiRoutes)
     .set('port', (process.env.PORT || 8080))
-    // start the server and listen to the port
-    // Ensure the correct environment setup is set
+// start the server and listen to the port
+// Ensure the correct environment setup is set
     .listen(staticRouter.get('port'), function () {
-        console.log('Node server is now running on port', staticRouter.get('port'));
-        console.log('The server is setup for', staticRouter.get('env'), 'mode');
-    });
+    console.log('Node server is now running on port', staticRouter.get('port'));
+    console.log('The server is setup for', staticRouter.get('env'), 'mode');
+});

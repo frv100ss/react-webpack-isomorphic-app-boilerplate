@@ -11,13 +11,7 @@ class LoginPage extends React.Component {
      */
     constructor(props, context) {
         super(props, context);
-        const storedMessage = localStorage.getItem('successMessage');
-        let successMessage = '';
 
-        if (storedMessage) {
-            successMessage = storedMessage;
-            localStorage.removeItem('successMessage');
-        }
 
         this.processForm = this.processForm.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -25,7 +19,7 @@ class LoginPage extends React.Component {
         // set the initial component state
         this.state = {
             redirectToDashboardPage: null,
-            successMessage,
+            successMessage :"",
             errors: {},
             user: {
                 email: '',
@@ -34,6 +28,17 @@ class LoginPage extends React.Component {
         };
     }
 
+    componentDidMount(){
+        const storedMessage = localStorage.getItem('successMessage');
+        let successMessage = '';
+
+        if (storedMessage) {
+            this.setState({
+                successMessage: storedMessage
+            });
+            localStorage.removeItem('successMessage');
+        }
+    }
     processForm(event) {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();

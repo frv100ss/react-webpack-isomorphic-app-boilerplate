@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import {CookiesProvider} from 'react-cookie';
 import App from './components/App';
 import {AppContainer} from "react-hot-loader";
 import 'react-hot-loader/patch';
@@ -15,11 +14,9 @@ const rootEl = document.getElementById('app');
 const render = Component => {
     ReactDOM.render(
         <AppContainer>
-            <CookiesProvider>
-                <MuiThemeProvider muiTheme={getMuiTheme()}>
-                    <Component/>
-                </MuiThemeProvider>
-            </CookiesProvider>
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <Component/>
+            </MuiThemeProvider>
         </AppContainer>,
         rootEl
     )

@@ -1,5 +1,4 @@
 import { instanceOf } from 'prop-types';
-import { withCookies, Cookies } from 'react-cookie';
 import React from "react";
 
 class Auth extends React.Component{
@@ -7,17 +6,13 @@ class Auth extends React.Component{
     constructor (props) {
         super(props)
     }
-
-    // static propTypes = {
-    //     cookies: instanceOf(Cookies).isRequired
-    // };
     /**
      * Authenticate a user. Save a token string in Local Storage
      *
      * @param {string} token
      */
     static authenticateUser(token) {
-        if (typeof localStorage !== 'undefined')
+        if (token)
             localStorage.setItem('token', token);
     }
 
@@ -27,8 +22,10 @@ class Auth extends React.Component{
      * @returns {boolean}
      */
     static isUserAuthenticated() {
-        if (typeof localStorage !== 'undefined')
+        if (typeof localStorage !== 'undefined'){
             return localStorage.getItem('token') !== null;
+        }
+
     }
 
     /**

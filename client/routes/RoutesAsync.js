@@ -36,8 +36,8 @@ export function asyncComponent(getComponent) {
 // };
 
 
-export const HomePage = asyncComponent(() =>
-    System.import('../components/HomePage').then(module => module.default)
+export const HomePageSwitcher = asyncComponent(() =>
+    System.import('../containers/HomePageSwitcher').then(module => module.default)
 );
 
 export const LoginPage = asyncComponent(() =>

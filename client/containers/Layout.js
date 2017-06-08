@@ -10,10 +10,8 @@ const Layout = () => {
         <div>
             <TopNav />
             <Switch>
-                {Auth.isUserAuthenticated()
-                    ? <Route exact path="/" component={Routes.DashboardPage}/>
-                    : <Route exact path="/" component={Routes.HomePage}/>
-                }
+
+                <Route exact path="/" component={Routes.HomePageSwitcher}/>
                 <Route path="/login" component={Routes.LoginPage}/>
                 <Route path="/signup" component={Routes.SignUpPage}/>
                 <Route path="/logout" render={() => {

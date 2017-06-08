@@ -24,8 +24,7 @@ class SignUpPage extends React.Component {
         this.processForm = this.processForm.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-
-    /**
+        /**
      * Process the form.
      *
      * @param {object} event - the JavaScript event object
