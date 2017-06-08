@@ -25,6 +25,7 @@ NB : You have to install and use MongoDb then start server to store token.
 ### Main Dependencies
 
 * [React](https://facebook.github.io/react/)
+* [React-Router V4](https://reacttraining.com/react-router/web/guides/quick-start)
 * [Webpack 2](https://webpack.js.org/)
 * [babel-loader](https://github.com/babel/babel-loader)
 * [react-hot-loader](https://github.com/gaearon/react-hot-loader)
