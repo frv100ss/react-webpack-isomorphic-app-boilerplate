@@ -13,9 +13,8 @@ It runs **`react-hot-loader`** and **`synchronous routes`** <br>
 **`Server side rendering`** is turn off in this mode
 
 ## Usage
-
 ```
-git clone https://github.com/frv100ss/Isomorph-app.git
+git clone https://github.com/frv100ss/react-webpack-isomorphic-app-boilerplate.git
 npm install
 
 NB : You have to install and use MongoDb then start server to store token. 
