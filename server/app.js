@@ -24,12 +24,17 @@ const config = require('./config');
 require('../server/models').connect(config.dbUri);
 const passport = require('passport');
 
+//stuff to upload images
+import corsPrefetch from 'cors-prefetch-middleware';
+import imagesUpload from 'images-upload-middleware';
+
 // load passport strategies
 const localSignupStrategy = require('../server/passport/local-signup');
 const localLoginStrategy = require('../server/passport/local-login');
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 const authCheckMiddleware = require('../server/middleware/auth-check');
+
 /**
  * Here we're splitting environments based on Node_ENV value
  * If this value is dev so => doDev, and... the same for prod :)
@@ -55,8 +60,8 @@ const doProdEnv = () => {
     const bundleCSS = manifest['main.css'];
 
     staticRouter
-    // tell the server to look for static files in these directories
         .use(express.static('./dist/build'))
+    // tell the server to look for static files in these directories
         .get('*', (req, res) => {
             const context = {};
             //Here we need to set the user Agent in order muiTheme
@@ -85,21 +90,30 @@ const doProdEnv = () => {
         });
 };
 
-staticRouter.get('env') === 'production'
+staticRouter
+    .get('env') === 'production'
     ? doProdEnv()
     : doDevEnv();
 
 // tell the server to parse HTTP body messages
 staticRouter
     .use(bodyParser.urlencoded({extended: false}))
+    .use(corsPrefetch)
+
 // pass the passport middleware
     .use(passport.initialize())
     .use(bodyParser.json())
     .use('/auth', authRoutes)
     .use('/api', authCheckMiddleware)
     .use('/api', apiRoutes)
+
     .set('port', (process.env.PORT || 8080))
-// start the server and listen to the port
+    .post('/upload-image', imagesUpload(
+        './dist/build',
+        'http://localhost:8080'
+    ))
+
+    // start the server and listen to the port
 // Ensure the correct environment setup is set
     .listen(staticRouter.get('port'), function () {
     console.log('Node server is now running on port', staticRouter.get('port'));

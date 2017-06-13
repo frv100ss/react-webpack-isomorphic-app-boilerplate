@@ -3,15 +3,15 @@ import Auth from '../modules/Auth';
 import Dashboard from '../components/Dashboard.js';
 
 class DashboardPage extends React.Component {
-
     /**
      * Class constructor.
      */
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
 
         this.state = {
-            secretData: ''
+            secretData: '',
+            userInformation: ''
         };
     }
 
@@ -19,6 +19,13 @@ class DashboardPage extends React.Component {
      * This method will be executed after initial rendering.
      */
     componentDidMount() {
+        const storedUser = localStorage.getItem('userInformation');
+        let userInformation = '';
+
+        if (storedUser) {
+            userInformation = storedUser;
+        }
+
         const xhr = new XMLHttpRequest();
         xhr.open('post', '/api/dashboard');
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -28,18 +35,22 @@ class DashboardPage extends React.Component {
         xhr.addEventListener('load', () => {
             if (xhr.status === 200) {
                 this.setState({
-                    secretData: xhr.response.message
+                    secretData: xhr.response.message,
+                    userInformation: storedUser
                 });
             }
+            localStorage.removeItem('userInformation');
         });
         xhr.send();
     }
-
     /**
      * Render the component.
      */
     render() {
-        return (<Dashboard secretData={this.state.secretData} />);
+        return (<Dashboard
+            secretData={this.state.secretData}
+            userInformation={this.state.userInformation}
+        />);
     }
 
 }

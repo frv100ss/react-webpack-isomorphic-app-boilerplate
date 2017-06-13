@@ -63,6 +63,7 @@ class LoginPage extends React.Component {
 
                 // save the token
                 Auth.authenticateUser(xhr.response.token);
+                localStorage.setItem('userInformation', xhr.response.user.name.charAt(0).toUpperCase() + xhr.response.user.name.toLowerCase().slice(1))
                 // change the current URL to /
                 this.setState({redirectToDashboardPage : '/'})
             } else {

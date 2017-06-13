@@ -1,13 +1,14 @@
 import React from 'react'
-import {BrowserRouter} from 'react-router-dom'
 import Layout from '../containers/Layout'
+import {BrowserRouter} from 'react-router-dom'
 
 const App = () => (
-  <BrowserRouter>
+
     <div id="app-routes">
-       <Layout />
+        <BrowserRouter>
+            <Layout />
+        </BrowserRouter>
     </div>
-  </BrowserRouter>
 );
 
 export default App;

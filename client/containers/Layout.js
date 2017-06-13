@@ -1,4 +1,4 @@
-import {Switch, Route} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import React from "react";
 import TopNav from '../components/TopNav'
 import {Redirect} from 'react-router-dom'
@@ -7,10 +7,8 @@ import * as Routes from '../routes/Routes'
 
 const Layout = () => {
     return (
-        <div>
-            <TopNav />
-            <Switch>
-
+            <div>
+                <Route path="/" component={TopNav}/>
                 <Route exact path="/" component={Routes.HomePageSwitcher}/>
                 <Route path="/login" component={Routes.LoginPage}/>
                 <Route path="/signup" component={Routes.SignUpPage}/>
@@ -20,10 +18,8 @@ const Layout = () => {
                         <Redirect to="/"/>
                     )
                 } }/>
-            </Switch>
-        </div>
+            </div>
     )
 };
 
 export default Layout;
-
