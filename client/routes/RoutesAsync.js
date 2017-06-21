@@ -47,6 +47,13 @@ export const LoginPage = asyncComponent(() =>
 export const SignUpPage = asyncComponent(() =>
     System.import('../containers/SignUpPage').then(module => module.default)
 );
+export const CreateArticlePage = asyncComponent(() =>
+    System.import('../containers/CreateArticlePage').then(module => module.default)
+);
+
+export const UpdateArticlePage = asyncComponent(() =>
+    System.import('../containers/UpdateArticlePage').then(module => module.default)
+);
 
 
 

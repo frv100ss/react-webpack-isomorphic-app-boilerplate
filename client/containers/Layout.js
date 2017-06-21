@@ -1,4 +1,4 @@
-import {Route} from 'react-router-dom'
+import { Route} from 'react-router-dom'
 import React from "react";
 import TopNav from '../components/TopNav'
 import {Redirect} from 'react-router-dom'
@@ -9,9 +9,11 @@ const Layout = () => {
     return (
             <div>
                 <Route path="/" component={TopNav}/>
-                <Route exact path="/" component={Routes.HomePageSwitcher}/>
+                <Route exact path='/' component={Routes.HomePageSwitcher}/>
                 <Route path="/login" component={Routes.LoginPage}/>
                 <Route path="/signup" component={Routes.SignUpPage}/>
+                <Route path="/createArticle" component={Routes.CreateArticlePage}/>
+                <Route path="/updateArticle/:_id" component={Routes.UpdateArticlePage}/>
                 <Route path="/logout" render={() => {
                     Auth.deauthenticateUser();
                     return (

@@ -1,11 +1,11 @@
 import React from "react";
 import HomePage from '../components/HomePage';
 import Auth from '../modules/Auth';
-import DashboardPage from './DashboardPage';
+import DashboardPage from '../containers/DashboardPage';
 
-const HomePageSwitcher = () => (
+const HomePageSwitcher = props => (
 Auth.isUserAuthenticated()
-    ? <DashboardPage/>
-    : <HomePage/>
+    ? <DashboardPage {...props}/>
+    : <HomePage {...props}/>
 );
 export default HomePageSwitcher;

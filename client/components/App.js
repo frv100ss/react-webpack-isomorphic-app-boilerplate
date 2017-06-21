@@ -6,7 +6,7 @@ const App = () => (
 
     <div id="app-routes">
         <BrowserRouter>
-            <Layout />
+            <Layout/>
         </BrowserRouter>
     </div>
 );

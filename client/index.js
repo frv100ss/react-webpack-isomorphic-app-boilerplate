@@ -7,6 +7,9 @@ import App from './components/App';
 import {AppContainer} from "react-hot-loader";
 import 'react-hot-loader/patch';
 import "./styles/index.css";
+import { Provider } from 'react-redux'
+import store from './data/articleStore';
+
 // remove tap delay, essential for MaterialUI to work properly
 injectTapEventPlugin();
 const rootEl = document.getElementById('app');
@@ -14,9 +17,11 @@ const rootEl = document.getElementById('app');
 const render = Component => {
     ReactDOM.render(
         <AppContainer>
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <Component/>
-            </MuiThemeProvider>
+            <Provider store={store}>
+                <MuiThemeProvider muiTheme={getMuiTheme()}>
+                    <Component />
+                </MuiThemeProvider>
+            </Provider>
         </AppContainer>,
         rootEl
     )

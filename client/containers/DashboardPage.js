@@ -8,17 +8,19 @@ class DashboardPage extends React.Component {
      */
     constructor(props, context) {
         super(props, context);
-
         this.state = {
             secretData: '',
-            userInformation: ''
+            userInformation: '',
+            errors:{}
         };
+
     }
 
     /**
      * This method will be executed after initial rendering.
      */
     componentDidMount() {
+
         const storedUser = localStorage.getItem('userInformation');
         let userInformation = '';
 
@@ -48,6 +50,7 @@ class DashboardPage extends React.Component {
      */
     render() {
         return (<Dashboard
+            props={this.props}
             secretData={this.state.secretData}
             userInformation={this.state.userInformation}
         />);
@@ -55,4 +58,7 @@ class DashboardPage extends React.Component {
 
 }
 
-export default DashboardPage;
+
+
+
+export default DashboardPage

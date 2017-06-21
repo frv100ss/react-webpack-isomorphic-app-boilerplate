@@ -11,6 +11,8 @@ import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import {renderToString} from "react-dom/server";
 import {StaticRouter} from "react-router-dom";
+import {Provider} from 'react-redux'
+import store from './../client/data/articleStore';
 //Stuff here is just required for dev mode to get the hot reloading functionality activated
 const webpack = require('webpack');
 const webpackConfig = require('../webpack.config');
@@ -51,6 +53,7 @@ const doDevEnv = () => {
             noInfo: true, publicPath: webpackConfig.output.publicPath
         }))
         .use(require('webpack-hot-middleware')(compiler))
+        .use(express.static('./dist/build'))
 };
 
 const doProdEnv = () => {
@@ -61,7 +64,7 @@ const doProdEnv = () => {
 
     staticRouter
         .use(express.static('./dist/build'))
-    // tell the server to look for static files in these directories
+        // tell the server to look for static files in these directories
         .get('*', (req, res) => {
             const context = {};
             //Here we need to set the user Agent in order muiTheme
@@ -73,6 +76,7 @@ const doProdEnv = () => {
                 userAgent: 'all',
             });
             const html = renderToString(
+                <Provider store={store}>
                     <MuiThemeProvider muiTheme={muiTheme}>
                         <StaticRouter location={req.url} context={context}>
                             <div id="app-routes">
@@ -80,6 +84,7 @@ const doProdEnv = () => {
                             </div>
                         </StaticRouter>
                     </MuiThemeProvider>
+                </Provider>
             );
 
             res.send(template({
@@ -97,10 +102,10 @@ staticRouter
 
 // tell the server to parse HTTP body messages
 staticRouter
-    .use(bodyParser.urlencoded({extended: false}))
+    .use(bodyParser.urlencoded({extended: true, json:true}))
     .use(corsPrefetch)
 
-// pass the passport middleware
+    // pass the passport middleware
     .use(passport.initialize())
     .use(bodyParser.json())
     .use('/auth', authRoutes)
@@ -114,8 +119,8 @@ staticRouter
     ))
 
     // start the server and listen to the port
-// Ensure the correct environment setup is set
+    // Ensure the correct environment setup is set
     .listen(staticRouter.get('port'), function () {
-    console.log('Node server is now running on port', staticRouter.get('port'));
-    console.log('The server is setup for', staticRouter.get('env'), 'mode');
-});
+        console.log('Node server is now running on port', staticRouter.get('port'));
+        console.log('The server is setup for', staticRouter.get('env'), 'mode');
+    });

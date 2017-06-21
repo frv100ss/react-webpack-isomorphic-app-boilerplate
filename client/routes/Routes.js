@@ -1,4 +1,6 @@
 export { default as HomePageSwitcher } from '../containers/HomePageSwitcher'
 export { default as DashboardPage } from '../containers/DashboardPage'
+export { default as CreateArticlePage } from '../containers/CreateArticlePage'
+export { default as UpdateArticlePage } from '../containers/UpdateArticlePage'
 export { default as LoginPage } from '../containers/LoginPage'
 export { default as SignUpPage } from '../containers/SignUpPage'
