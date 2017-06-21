@@ -17,7 +17,7 @@ const checkArticleForm = (payload) => {
     let isFormValid = true;
     let message = '';
 
-    if (payload.date === '[object Object]' || payload.date === 'undefined'  ) {
+    if (payload.date === '[object Object]' || payload.date === 'undefined') {
         isFormValid = false;
         errors.date = 'Veuillez renseigner une date';
     }
@@ -27,22 +27,22 @@ const checkArticleForm = (payload) => {
         errors.hour = 'Veuillez renseigner l\'heure de publication';
     }
 
-    if (payload.title === "undefined" || !payload.title){
+    if (payload.title === "undefined" || !payload.title) {
         isFormValid = false;
         errors.title = 'Veuillez renseigner le titre de l\'article';
     }
 
-    if (payload.corpus === "undefined" || !payload.corpus){
+    if (payload.corpus === "undefined" || !payload.corpus) {
         isFormValid = false;
         errors.corpus = 'Veuillez renseigner le corps de l\'article';
     }
 
-    if (payload.mainImg === "undefined" || !payload.mainImg || payload.mainImg === 'null'){
+    if (payload.mainImg === "undefined" || !payload.mainImg || payload.mainImg === 'null') {
         isFormValid = false;
         errors.mainImg = 'Veuillez renseigner l\'image principale de l\'article';
     }
 
-    if (payload.tags === "undefined" || payload.tags.length === 0 ){
+    if (payload.tags === "undefined" || payload.tags.length === 0) {
         isFormValid = false;
         errors.tags = 'Veuillez renseigner au moins un tag pour l\'article';
     }
@@ -52,10 +52,9 @@ const checkArticleForm = (payload) => {
     }
 
     return {
-        success: isFormValid, 
+        success: isFormValid,
         message,
         errors,
-        date:payload.date
     };
 };
 
@@ -87,7 +86,7 @@ router.post('/createArticle', (req, res) => {
 router.post('/getArticles', (req, res) => {
 
 //looks at our Article Schema
-    Article.find(function(err, articles) {
+    Article.find(function (err, articles) {
         if (err)
             res.send(err);
         //responds with a json object of our database comments.
@@ -97,18 +96,49 @@ router.post('/getArticles', (req, res) => {
 });
 
 router.delete('/deleteArticle', (req, res) => {
-    Article.find({ _id:req.query._id }).remove().exec()
+    Article.find({_id: req.query._id}).remove().exec()
     return res.status(200).end('Success');
 });
 
-router.post('/updateArticle', (req, res) => {
-    console.log('lolo', req.params)
+router.post('/getArticle', (req, res) => {
     Article.findById({_id: req.body.params._id}, function (err, article) {
         if (err)
             res.send(err);
         //responds with a json object of our database comments.
         res.json(article)
     });
+});
+
+router.post('/updateArticle', (req, res) => {
+    const validationResult = checkArticleForm(req.body);
+    if (!validationResult.success) {
+        return res.status(400).json({
+            success: false,
+            message: validationResult.message,
+            errors: validationResult.errors
+        });
+    }
+
+    var update = {
+        date: req.body.date,
+        hour: req.body.hour,
+        title: req.body.title,
+        corpus: req.body.corpus,
+        mainImg: req.body.mainImg,
+        tags: eval(req.body.tags)
+    };
+
+    var query = {"_id": req.get('key')};
+    var options = {new: true};
+
+    Article.findOneAndUpdate(query, update, options, function(err, person) {
+        if (err) {
+            console.log('got an error');
+        }
+
+        // at this point person is null.
+    });
+    return res.status(200).end('Success');
 });
 
 module.exports = router;

@@ -21,7 +21,7 @@ class UpdateArticlePage extends React.Component {
     componentDidMount() {
         const key = this.props.match.params._id;
         axios.defaults.headers.common['Authorization'] = `bearer ${Auth.getToken()}`;
-        axios.post('/api/updateArticle', {
+        axios.post('/api/getArticle', {
             params: {
                 _id: key
             }
@@ -37,6 +37,7 @@ class UpdateArticlePage extends React.Component {
     processForm(event) {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
+        console.log('key', this.props.match.params._id)
 
         // create a string for an HTTP body message
         const {
@@ -47,16 +48,16 @@ class UpdateArticlePage extends React.Component {
             tags,
             mainImg
         } = this.props;
-        const key = this.props.match.params._id;
+
         const formData = `date=${date}&hour=${hour}&title=${title}&corpus=${corpus}&tags=${tags}&mainImg=${mainImg}`;
+        const key = this.props.match.params._id;
 
         // create an AJAX request
-console.log('key',key)
         const xhr = new XMLHttpRequest();
-        xhr.open('post', `/api/${key}`);
+        xhr.open('post', '/api/updateArticle');
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('key', `${key}`);
         xhr.responseType = 'json';
         xhr.addEventListener('load', () => {
             if (xhr.status === 200) {
