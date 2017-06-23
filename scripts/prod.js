@@ -18,7 +18,6 @@ const paths = require('../config/paths');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
-const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 // Warn and crash if required files are missing
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);

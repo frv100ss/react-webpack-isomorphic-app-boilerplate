@@ -31,7 +31,7 @@ class MainImg extends Component {
                 mainImg:this.props.mainImg
             })
             this.handleCurrentMainImg(this.state.mainImg)
-        }, 200)
+        }, 400)
     }
 
     render() {

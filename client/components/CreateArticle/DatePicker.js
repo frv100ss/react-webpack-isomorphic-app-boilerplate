@@ -13,14 +13,45 @@ class DatePickerArticle extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        const defaultDate= new Date();
+        defaultDate.setFullYear(defaultDate.getFullYear());
+        defaultDate.setHours(0, 0, 0, 0);
+        this.state = ({
+            date: {},
+            defaultDate:defaultDate
+        })
     }
 
     handleChange(event, date) {
         const {
             action,
         } = this.props;
+
+        this.setState({
+            date: date
+        });
         action.articleDate(date);
     };
+
+    handleCurrentDate(date) {
+
+        console.log('showing', date)
+        const {
+            action,
+        } = this.props;
+
+        this.setState({
+            date: date
+        });
+        action.articleDate(date);
+    };
+
+    componentDidMount(){
+        const defaultDate= new Date();
+        defaultDate.setFullYear(defaultDate.getFullYear());
+        defaultDate.setHours(0, 0, 0, 0);
+        this.handleCurrentDate(defaultDate)
+    }
 
     render() {
         let DateTimeFormat;
@@ -31,13 +62,9 @@ class DatePickerArticle extends React.Component {
             DateTimeFormat = global.Intl.DateTimeFormat;
         }
 
-        const {
-            date
-        } = this.props;
-
         return (
             <DatePicker
-                value={date}
+                defaultDate={this.state.defaultDate}
                 onChange={this.handleChange}
                 floatingLabelText="Date de publication"
                 floatingLabelFixed={true}
@@ -57,10 +84,4 @@ const mapDispatchToProps = (dispatch) => {
     return {action: bindActionCreators(actionCreators, dispatch)}
 };
 
-const mapStateToProps = (state) => {
-    return {
-        date:state.CreateArticle.date
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(DatePickerArticle)
+export default connect(null, mapDispatchToProps)(DatePickerArticle)

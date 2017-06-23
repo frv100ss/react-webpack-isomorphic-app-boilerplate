@@ -55,5 +55,9 @@ export const UpdateArticlePage = asyncComponent(() =>
     System.import('../containers/UpdateArticlePage').then(module => module.default)
 );
 
+export const PreviewArticlePage = asyncComponent(() =>
+    System.import('../containers/PreviewArticlePage').then(module => module.default)
+);
+
 
 

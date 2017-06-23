@@ -128,6 +128,9 @@ router.post('/updateArticle', (req, res) => {
         tags: eval(req.body.tags)
     };
 
+    console.log('corpus', req.body.corpus)
+
+
     var query = {"_id": req.get('key')};
     var options = {new: true};
 
@@ -140,5 +143,15 @@ router.post('/updateArticle', (req, res) => {
     });
     return res.status(200).end('Success');
 });
+
+router.post('/previewArticle', (req, res) => {
+    Article.findById({_id: req.body.params._id}, function (err, article) {
+        if (err)
+            res.send(err);
+        //responds with a json object of our database comments.
+        res.json(article)
+    });
+});
+
 
 module.exports = router;

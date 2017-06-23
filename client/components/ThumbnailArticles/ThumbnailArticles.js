@@ -1,19 +1,25 @@
 import React, {Component} from 'react';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ActionDescription from 'material-ui/svg-icons/action/description';
-
+import ActionPreview from 'material-ui/svg-icons/action/pageview';
 import IconButton from 'material-ui/IconButton';
 import axios from 'axios';
 import Auth from '../../modules/Auth';
 import Paper from 'material-ui/Paper';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
-const style = {
-    height: 200,
-    width: 275,
-    margin: 7,
-    textAlign: 'left',
+const styles = {
+    paper:{
+        height: 200,
+        width: 275,
+        margin: 7,
+        textAlign: 'left',
+        marginBottom:40
+    },
+
+
 };
 
 class ThumbnailArticles extends Component {
@@ -27,11 +33,11 @@ class ThumbnailArticles extends Component {
         };
     }
 
-    handleClose(){
+    handleClose() {
         this.setState({alertOpen: false});
     };
 
-    handleOpen(key){
+    handleOpen(key) {
         this.setState({
             alertOpen: true,
             key: key
@@ -56,8 +62,12 @@ class ThumbnailArticles extends Component {
         window.location = "/";
     }
 
-    handleShowArticle(key) {
+    handleEditArticle(key) {
         this.props.history.push(`/updateArticle/${key}`)
+    }
+
+    handleShowArticle(key) {
+        this.props.history.push(`/previewArticle/${key}`)
     }
 
     componentDidMount() {
@@ -76,40 +86,50 @@ class ThumbnailArticles extends Component {
             <FlatButton
                 label="Annuler"
                 primary={true}
-                onTouchTap={()=>this.handleClose()}
+                onTouchTap={() => this.handleClose()}
             />,
             <FlatButton
                 label="Valider"
                 primary={true}
-                onTouchTap={()=>this.handleRequestDelete(this.state.key)}
+                onTouchTap={() => this.handleRequestDelete(this.state.key)}
             />,
         ];
         return (
             this.state.articles
                 ? <div className="article-preview-container">
                 {this.state.articles.map((item) =>
-                    <Paper key={item._id} style={style} zDepth={3}>
+
+                    <Paper key={item._id} style={styles.paper} zDepth={3}>
+                        <div className="article-menu-item">
+                            <IconButton className="iu-deletePreview" tooltip="Supprimer" touch={true}
+                                        tooltipPosition="top-right">
+                                <ActionDelete onClick={() => this.handleOpen(item._id)}/>
+                            </IconButton>
+                            <IconButton className="iu-editPreview" tooltip="Editer" touch={true}
+                                        tooltipPosition="top-right">
+                                <ActionDescription onClick={() => this.handleEditArticle(item._id)}/>
+                            </IconButton>
+                            <IconButton className="iu-showPreview" tooltip="Prévisualiser" touch={true}
+                                        tooltipPosition="top-right">
+                                <ActionPreview onClick={() => this.handleShowArticle(item._id)}/>
+                            </IconButton>
+                        </div>
                         <img className="article-preview-img" src={item.mainImg}/>
                         <div className="article-preview-title">
                             <a href="">{item.title}</a>
                         </div>
-                        <IconButton className="iu-deletePreview" tooltip="Supprimer l'article" touch={true}
-                                    tooltipPosition="top-right">
-                            <ActionDelete onClick={() => this.handleOpen(item._id)}/>
-                        </IconButton>
-                        <IconButton className="iu-editPreview" tooltip="Editer l'article" touch={true}
-                                    tooltipPosition="top-right">
-                            <ActionDescription onClick={() => this.handleShowArticle(item._id)}/>
-                        </IconButton>
+
+
                         <Dialog
                             actions={actions}
                             modal={false}
                             open={this.state.alertOpen}
-                            onRequestClose={()=>this.handleClose}
+                            onRequestClose={() => this.handleClose}
                         >
                             Voulez-vous vraiment supprimer cet article ?
                         </Dialog>
                     </Paper>
+
                 )}</div>
 
                 : <div> Loading ... </div>

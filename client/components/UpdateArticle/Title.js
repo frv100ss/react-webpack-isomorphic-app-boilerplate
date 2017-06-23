@@ -3,6 +3,8 @@ import TextField from 'material-ui/TextField';import {connect} from 'react-redux
 import * as actionCreators from "./../../data/articleActionsCreators";
 import {bindActionCreators} from 'redux';
 
+
+
 class Title extends React.Component {
 
     constructor(props) {
@@ -43,7 +45,7 @@ class Title extends React.Component {
                 title:this.props.title
             })
             this.handleCurrentTitle(this.state.title)
-        }, 200)
+        }, 400)
     }
 
     render() {

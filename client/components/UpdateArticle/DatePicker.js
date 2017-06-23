@@ -31,8 +31,6 @@ class DatePickerArticle extends React.Component {
     };
 
     handleCurrentDate(date) {
-
-        console.log('showing', date)
         const {
             action,
         } = this.props;

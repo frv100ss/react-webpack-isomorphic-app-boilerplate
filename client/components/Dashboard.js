@@ -7,8 +7,7 @@ import ThumbnailArticles from "./../components/ThumbnailArticles/ThumbnailArticl
 const style = {
     height: 200,
     width: 275,
-    margin: 7,
-    marginBottom:20,
+    margin: "10px 7px",
     textAlign: 'left',
 };
 
@@ -28,7 +27,7 @@ const Dashboard = ({   props,
                            </Card>
                            <Card className="container">
                                <div className="button-line">
-                                   <Paper style={style} zDepth={3}>
+                                   <Paper className="create-article-container" style={style} zDepth={3}>
                                    <Link to="/createArticle">Créer un nouvel article</Link>
                                    </Paper>
                                    <ThumbnailArticles {...props}/>

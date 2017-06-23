@@ -3,6 +3,15 @@ import Auth from '../modules/Auth';
 import UpdateArticle from '../components/UpdateArticle.js';
 import {connect} from 'react-redux';
 import axios from "axios";
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+
+const styles = {
+    btnClose: {
+        position: 'absolute',
+        top: 100,
+        right: "7%"
+    }
+};
 
 class UpdateArticlePage extends React.Component {
     /**
@@ -16,6 +25,10 @@ class UpdateArticlePage extends React.Component {
             article: []
         };
 
+    }
+
+    handleButtonClose() {
+        this.props.history.push('/')
     }
 
     componentDidMount() {
@@ -37,8 +50,6 @@ class UpdateArticlePage extends React.Component {
     processForm(event) {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
-        console.log('key', this.props.match.params._id)
-
         // create a string for an HTTP body message
         const {
             date,
@@ -87,11 +98,19 @@ class UpdateArticlePage extends React.Component {
      * Render the component.
      */
     render() {
-        return (<UpdateArticle
-            props={this.state.article}
-            errors={this.state.errors}
-            onSubmit={this.processForm}
-        />);
+        return (
+            <div>
+                <UpdateArticle
+                    props={this.state.article}
+                    errors={this.state.errors}
+                    onSubmit={this.processForm}
+
+                />
+                <FloatingActionButton style={styles.btnClose} onClick={() => this.handleButtonClose()}>
+                    <div>X</div>
+                </FloatingActionButton>
+            </div>
+        );
     }
 
 }

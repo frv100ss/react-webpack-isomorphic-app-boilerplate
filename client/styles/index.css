@@ -1,3 +1,4 @@
+@import "quill/quill.snow.css";
 body {
   margin: 0;
   font-size: 16px;
@@ -37,7 +38,8 @@ a:hover {
 .container {
   margin: 0 auto;
   text-align: center;
-  width: 900px;
+  width: 90%;
+  padding-bottom: 20px;
 }
 .container a {
   color: #236fff;
@@ -63,7 +65,7 @@ a:hover {
 .article-form {
   margin: 30px auto 0 auto;
   padding: 15px;
-  width: 900px;
+  width: 90%;
 }
 label.iu-label {
   font-size: 12px;
@@ -340,37 +342,72 @@ input[type=submit]::-moz-focus-inner {
   height: 100%;
   background-color: rgba(0,0,0,0.3);
 }
+.corpus {
+  font-size: 12px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  color: rgba(0,0,0,0.3);
+}
 .button-line .article-preview-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.button-line .article-preview-container .iu-deletePreview {
+.button-line .article-preview-container .article-menu-item {
+  position: relative;
+  top: 0;
+  height: 30px;
+  background-color: #00bcd4;
+  opacity: 1;
+}
+.button-line .article-preview-container .article-menu-item .iu-deletePreview {
   position: absolute;
-  top: -60px;
+  top: -9px;
   left: 240px;
-  padding: 2px;
+  height: 12px;
 }
-.button-line .article-preview-container .iu-deletePreview div svg {
-  color: #fefefe !important;
+.button-line .article-preview-container .article-menu-item .iu-deletePreview div svg {
+  color: #f5f5f5 !important;
+  height: 18px !important;
 }
-.button-line .article-preview-container .iu-editPreview {
+.button-line .article-preview-container .article-menu-item .iu-deletePreview div svg:hover {
+  transform: scale(1.7) !important;
+  color: #ffa500 !important;
+}
+.button-line .article-preview-container .article-menu-item .iu-editPreview {
   position: absolute;
-  top: -60px;
+  top: -9px;
   left: 160px;
-  padding: 2px;
+  opacity: 1;
 }
-.button-line .article-preview-container .iu-editPreview div svg {
-  color: #fefefe !important;
+.button-line .article-preview-container .article-menu-item .iu-editPreview div svg {
+  color: #f5f5f5 !important;
+  height: 18px !important;
+}
+.button-line .article-preview-container .article-menu-item .iu-editPreview div svg:hover {
+  transform: scale(1.7) !important;
+  color: #ffa500 !important;
+}
+.button-line .article-preview-container .article-menu-item .iu-showPreview {
+  position: absolute;
+  top: -9px;
+  left: 80px;
+}
+.button-line .article-preview-container .article-menu-item .iu-showPreview div svg {
+  color: #f5f5f5 !important;
+  height: 18px !important;
+}
+.button-line .article-preview-container .article-menu-item .iu-showPreview div svg:hover {
+  transform: scale(1.7) !important;
+  color: #ffa500 !important;
 }
 .button-line .article-preview-container .article-preview-title {
   position: relative;
-  osition: relative;
   top: 150px;
   height: 50px;
-  background-color: #000;
-  z-index: 9999;
-  opacity: 0.7;
+  background-color: #2f4f4f;
+  z-index: 2;
+  opacity: 0.8;
 }
 .button-line .article-preview-container .article-preview-title a {
   color: #fff;
@@ -380,7 +417,6 @@ input[type=submit]::-moz-focus-inner {
   width: 100%;
   position: relative;
   margin-top: 5px;
-  z-index: 9999;
 }
 .button-line .article-preview-container .article-preview-img {
   height: 200px;
@@ -395,6 +431,21 @@ input[type=submit]::-moz-focus-inner {
   text-align: center;
   width: 100%;
   margin-top: 85px;
+}
+@media screen and (max-width: 768px) {
+  .container {
+    width: 95%;
+    margin: 0 auto;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  .article-preview-container {
+    justify-content: center;
+  }
+  .button-line .create-article-container {
+    margin: 7px auto !important;
+    padding: 0 !important;
+  }
 }
 @-moz-keyframes a {
   0% {

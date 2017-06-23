@@ -10,12 +10,13 @@ const cssnano = require('cssnano');
 const path = require("path");
 const fs = require("fs");
 const cssFilename = 'static/css/[name].[contenthash:8].css';
+var nodeExternals = require('webpack-node-externals');
 
 var commonLoaders = [
     {
         test: /\.js$/,
         loader: "babel-loader",
-        include: [paths.appSrc, paths.appServerSrc],
+        // include: [paths.appSrc, paths.appServerSrc],
         exclude: /node_modules/,
         query: {
             cacheDirectory: true,
@@ -60,6 +61,7 @@ const config = [
             }
         },
         module: {
+            noParse:path.resolve('node_modules/quill/dist/quill.js'),
             rules: commonLoaders.concat([
                 {
                     test: /\.css$/,
@@ -169,11 +171,13 @@ const config = [
             path: paths.appBuild,
             filename: "../../server/server.js",
             publicPath: "/",
-            libraryTarget: 'umd2'
+            libraryTarget: 'commonjs'
         },
-        externals: /^[a-z\-0-9]+$/,
+        externals: [nodeExternals()],
+        target:"node",
         module: {
-            loaders: commonLoaders
+            loaders: commonLoaders,
+            noParse:path.resolve('node_modules/quill/dist/quill.js')
         },
         plugins: [
             new BabiliPlugin({

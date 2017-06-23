@@ -10,7 +10,7 @@ class TimePickerArticle extends React.Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         const defaultTime= new Date();
-        defaultTime.getTime()
+        defaultTime.getTime();
         this.state = ({
             hour: {},
             defaultTime:defaultTime
@@ -29,8 +29,6 @@ class TimePickerArticle extends React.Component {
     };
 
     handleCurrentTime(hour) {
-
-        console.log('showing', hour)
         const {
             action,
         } = this.props;
@@ -43,7 +41,7 @@ class TimePickerArticle extends React.Component {
 
     componentDidMount(){
         const defaultTime= new Date();
-        defaultTime.getTime()
+        defaultTime.getTime();
         this.handleCurrentTime(defaultTime)
     }
 

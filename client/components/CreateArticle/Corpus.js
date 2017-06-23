@@ -1,42 +1,82 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 import * as actionCreators from "./../../data/articleActionsCreators";
 import {bindActionCreators} from 'redux';
 
+const canUseDOM = !!(
+    typeof window !== 'undefined' &&
+    window.document &&
+    window.document.createElement
+);
+
+const modules= {
+    toolbar: [
+        [{ 'header': [1, 2, false] }],
+        ['bold', 'italic', 'underline','strike', 'blockquote'],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+        ['link', 'image'],
+        ['clean']
+    ],
+};
+
+const formats= [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image'
+];
 
 class Corpus extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleTitle = this.handleTitle.bind(this);
+        this.handleCorpus = this.handleCorpus.bind(this);
+        this.state={
+            quill:""
+        }
     }
 
-    handleTitle(e, corpus) {
+    handleCorpus(corpus) {
         const {
             action,
         } = this.props;
         action.articleCorpus(corpus);
     };
 
-    render() {
+    componentDidMount() {
+        setTimeout(() => {
+            if(canUseDOM){
+                this.setState({
+                    quill:require('react-quill')
+                });
+            }
+        }, 400)
+    }
 
+    render() {
         const {
             corpus
         } = this.props;
+        const Quill = this.state.quill;
+        if (Quill) {
+            return (<div>
+                    <div className="corpus">Corps de l'article</div>
+                    <Quill
+                        theme="snow"
+                        value={corpus}
+                        onChange={this.handleCorpus}
+                        modules={modules}
+                        formats={formats}
+                    />
+                </div>
 
-        return (
-            <TextField
-                style={{fontSize: "14px"}}
-                floatingLabelText="Corps de l'article"
-                floatingLabelFixed={true}
-                fullWidth={true}
-                multiLine={true}
-                rows={7}
-                onChange={this.handleTitle}
-                value={corpus}
-                name="corpus"
-            />
-        );
+            );
+        }
+
+        else {
+            return null
+        }
+
     }
 }
 

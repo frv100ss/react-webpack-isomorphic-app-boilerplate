@@ -13,6 +13,7 @@ const Layout = () => {
                 <Route path="/login" component={Routes.LoginPage}/>
                 <Route path="/signup" component={Routes.SignUpPage}/>
                 <Route path="/createArticle" component={Routes.CreateArticlePage}/>
+                <Route path="/previewArticle/:_id" component={Routes.PreviewArticlePage}/>
                 <Route path="/updateArticle/:_id" component={Routes.UpdateArticlePage}/>
                 <Route path="/logout" render={() => {
                     Auth.deauthenticateUser();

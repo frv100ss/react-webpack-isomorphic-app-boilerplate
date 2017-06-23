@@ -16,12 +16,14 @@ let DateTimeFormat;
 if (areIntlLocalesSupported(['fr', 'fa-IR'])) {
     DateTimeFormat = global.Intl.DateTimeFormat;
 }
-const style = {
-    fontSize: 14,
-    color: "red",
+const styles = {
+    errorMsg : {
+        fontSize: 14,
+        color: "red",
+    }
 };
 
-const CreateArticle = ({
+const CreateArticle = ({props,
                        onSubmit,
                        onChange,
                        errors,
@@ -33,22 +35,22 @@ const CreateArticle = ({
                     {errors.summary && <p className="error-message">{errors.summary}</p>}
 
                     <DatePickerArticle />
-                    {errors.date && <p style={style}>{errors.date}</p>}
+                    {errors.date && <p style={styles.errorMsg}>{errors.date}</p>}
 
                     <TimePickerArticle />
-                    {errors.hour && <p style={style}>{errors.hour}</p>}
+                    {errors.hour && <p style={styles.errorMsg}>{errors.hour}</p>}
 
                     <MainImg/>
-                    {errors.mainImg && <p style={style}>{errors.mainImg}</p>}
+                    {errors.mainImg && <p style={styles.errorMsg}>{errors.mainImg}</p>}
 
                     <Title />
-                    {errors.title && <p style={style}>{errors.title}</p>}
+                    {errors.title && <p style={styles.errorMsg}>{errors.title}</p>}
 
                     <Corpus/>
-                    {errors.corpus && <p style={style}>{errors.corpus}</p>}
+                    {errors.corpus && <p style={styles.errorMsg}>{errors.corpus}</p>}
 
                     <Tags />
-                    {errors.tags && <p style={style}>{errors.tags}</p>}
+                    {errors.tags && <p style={styles.errorMsg}>{errors.tags}</p>}
 
                     <div className="button-line">
                         <RaisedButton type="submit" label="Envoyer" primary/>

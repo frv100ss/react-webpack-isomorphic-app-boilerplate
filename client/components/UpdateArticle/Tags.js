@@ -36,7 +36,6 @@ class Tags extends React.Component {
 
         if(titleValue !==""){
             this.chipData.push({key:this.chipData.length, label:titleValue});
-            console.log('legnth', this.chipData.length)
             this.setState({chipData: this.chipData});
             this.tagsToAdd.push(this.chipData[this.chipData.length-1].label);
         }
@@ -53,11 +52,7 @@ class Tags extends React.Component {
         const chipToDelete = this.chipData.map((chip) => chip.key).indexOf(key);
         this.chipData.splice(chipToDelete, 1);
         this.setState({chipData: this.chipData});
-        console.log('chipTodel', chipToDelete)
         this.tagsToAdd.splice(chipToDelete, 1);
-
-        console.log('handlerequest', this.tagsToAdd)
-
         const {
             action,
         } = this.props;
@@ -100,9 +95,8 @@ class Tags extends React.Component {
                 chipData: this.chipData,
                 tagsToAdd:this.props.tags
             });
-            console.log('alreadyExistingTags', this.state) //yepOk
             this.handleCurrentTags(this.state.tagsToAdd)
-        }, 200)
+        }, 400)
     }
 
     render() {

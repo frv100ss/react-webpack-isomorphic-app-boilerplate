@@ -12,20 +12,43 @@ class TimePickerArticle extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        const defaultTime= new Date();
+        defaultTime.getTime();
+        this.state={
+            hour:{},
+            defaultTime:defaultTime
+        }
     }
 
     handleChange(event, hour) {
         const {
             action,
         } = this.props;
+        this.setState({
+            hour: hour
+        });
         action.articleHour(hour);
     };
 
-    render() {
+    handleCurrentTime(hour) {
+
+        console.log('showing', hour)
         const {
-            hour
+            action,
         } = this.props;
 
+        this.setState({
+            hour: hour
+        });
+        action.articleHour(hour);
+    };
+
+    componentDidMount(){
+        const defaultTime= new Date();
+        defaultTime.getTime();
+        this.handleCurrentTime(defaultTime)
+    }
+    render() {
         return (
             <TimePicker
                 format="24hr"
@@ -35,7 +58,7 @@ class TimePickerArticle extends React.Component {
                 fullWidth={true}
                 cancelLabel="Annuler"
                 onChange={this.handleChange}
-                value={hour}
+                defaultTime={this.state.defaultTime}
             />
         );
     }
@@ -46,10 +69,4 @@ const mapDispatchToProps = (dispatch) => {
     return {action: bindActionCreators(actionCreators, dispatch)}
 };
 
-const mapStateToProps = (state) => {
-    return {
-        hour: state.CreateArticle.hour
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TimePickerArticle)
+export default connect(null, mapDispatchToProps)(TimePickerArticle)

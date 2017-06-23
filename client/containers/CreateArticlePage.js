@@ -2,6 +2,16 @@ import React from 'react';
 import Auth from '../modules/Auth';
 import CreateArticle from '../components/CreateArticle.js';
 import {connect} from 'react-redux';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+
+const styles = {
+    btnClose: {
+        position: 'absolute',
+        top: 100,
+        right: "7%"
+    }
+};
+
 
 class CreateArticlePage extends React.Component {
     /**
@@ -11,9 +21,13 @@ class CreateArticlePage extends React.Component {
         super(props, context);
         this.processForm = this.processForm.bind(this);
         this.state = {
-            errors:{}
+            errors: {}
         };
 
+    }
+
+    handleButtonClose() {
+        this.props.history.push('/')
     }
 
     processForm(event) {
@@ -67,10 +81,18 @@ class CreateArticlePage extends React.Component {
      * Render the component.
      */
     render() {
-        return (<CreateArticle
-            errors={this.state.errors}
-            onSubmit={this.processForm}
-        />);
+        return (
+            <div>
+                <CreateArticle
+                    errors={this.state.errors}
+                    onSubmit={this.processForm}
+                />
+                <FloatingActionButton style={styles.btnClose} onClick={() => this.handleButtonClose()}>
+                    <div>X</div>
+                </FloatingActionButton>
+            </div>
+
+        );
     }
 
 }
@@ -78,12 +100,12 @@ class CreateArticlePage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        date:state.CreateArticle.date,
+        date: state.CreateArticle.date,
         title: state.CreateArticle.title,
         corpus: state.CreateArticle.corpus,
         hour: state.CreateArticle.hour,
         tags: state.CreateArticle.tags,
-        mainImg : state.CreateArticle.mainImg
+        mainImg: state.CreateArticle.mainImg
     }
 };
 
