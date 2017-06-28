@@ -2,10 +2,14 @@
 const path = require('path');
 const bodyParser = require("body-parser");
 const express = require("express");
+const http = require('http');
+//Require to interact with DataBase
+require('./models/article');
+const Article = require('mongoose').model('Article');
 // Here is all necessary dependencies useful for (server side) rendering
 // our Layout component in production mode
 import React from "react";
-import Layout from "./../client/containers/Layout";
+import Layout from "../client/Layout";
 import template from './views/template';
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
@@ -19,9 +23,10 @@ const webpackConfig = require('../webpack.config');
 const compiler = webpack(webpackConfig);
 
 const staticRouter = express();
+
 const authRoutes = require("../server/routes/auth");
 const apiRoutes = require('../server/routes/api');
-//stuff to connect database (Mongod)
+//stuff to connect database (Mongodb)
 const config = require('./config');
 require('../server/models').connect(config.dbUri);
 const passport = require('passport');
@@ -54,6 +59,7 @@ const doDevEnv = () => {
         }))
         .use(require('webpack-hot-middleware')(compiler))
         .use(express.static('./dist/build'))
+        .use(express.static('./dist/resources'))
 };
 
 const doProdEnv = () => {
@@ -64,6 +70,7 @@ const doProdEnv = () => {
 
     staticRouter
         .use(express.static('./dist/build'))
+        .use(express.static('./dist/resources'))
         // tell the server to look for static files in these directories
         .get('*', (req, res) => {
             const context = {};
@@ -109,18 +116,80 @@ staticRouter
     .use(passport.initialize())
     .use(bodyParser.json())
     .use('/auth', authRoutes)
-    .use('/api', authCheckMiddleware)
+    .use('/api/back', authCheckMiddleware)
     .use('/api', apiRoutes)
 
     .set('port', (process.env.PORT || 8080))
     .post('/upload-image', imagesUpload(
-        './dist/build',
+        './dist/resources',
         'http://localhost:8080'
-    ))
-
+    ));
     // start the server and listen to the port
     // Ensure the correct environment setup is set
-    .listen(staticRouter.get('port'), function () {
+    const server= staticRouter.listen(staticRouter.get('port'), function () {
         console.log('Node server is now running on port', staticRouter.get('port'));
         console.log('The server is setup for', staticRouter.get('env'), 'mode');
+    });
+
+    const io = require('socket.io').listen(server);
+    io.sockets.on('connection', function (socket) {
+        console.log('Un client est connecté !');
+        socket.on('doVisibleArticle', function(data) {
+            var update = {
+                isVisible:data.isVisible
+            };
+            var query = {"_id": data.key};
+            var options = {new: true};
+            Article.findOneAndUpdate(query, update, options, function(err) {
+                if (err) {
+                    console.log('got an error');
+                }
+            });
+        });
+
+        socket.on('orderUp', function(data) {
+            var updateElToUp = {
+                order:data.newOrder
+            };
+            var elToUp = {"order": data.order};
+            var updateElToDown = {
+                order:data.order
+            };
+            var elToDown = {"order": data.newOrder};
+            var options = {new: true};
+            Article.findOneAndUpdate(elToUp, updateElToUp, options, function(err) {
+                if (err) {
+                    console.log('got an error');
+                }
+            });
+            Article.findOneAndUpdate(elToDown, updateElToDown, options, function(err) {
+                if (err) {
+                    console.log('got an error');
+                }
+            });
+            socket.emit('orderDone');
+        });
+
+        socket.on('orderDown', function(data) {
+            var updateElToDown = {
+                order:data.newOrder
+            };
+            var elToDown = {"order": data.order};
+            var updateElToUp = {
+                order:data.order
+            };
+            var elToUp = {"order": data.newOrder};
+            var options = {new: true};
+            Article.findOneAndUpdate(elToUp, updateElToUp, options, function(err) {
+                if (err) {
+                    console.log('got an error');
+                }
+            });
+            Article.findOneAndUpdate(elToDown, updateElToDown, options, function(err) {
+                if (err) {
+                    console.log('got an error');
+                }
+            });
+            socket.emit('orderDone');
+        });
     });

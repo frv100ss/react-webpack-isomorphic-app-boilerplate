@@ -1,12 +1,10 @@
 const express = require('express');
 require('./../models/article')
 const config = require('../config');
-
 const Article = require('mongoose').model('Article');
-
 const router = new express.Router();
 
-router.post('/dashboard', (req, res) => {
+router.post('/back/dashboard', (req, res) => {
     res.status(200).json({
         message: "Vous êtes autorisé à consulter cette page.",
     });
@@ -58,7 +56,7 @@ const checkArticleForm = (payload) => {
     };
 };
 
-router.post('/createArticle', (req, res) => {
+router.post('/back/createArticle', (req, res) => {
     const validationResult = checkArticleForm(req.body);
     if (!validationResult.success) {
         return res.status(400).json({
@@ -68,39 +66,59 @@ router.post('/createArticle', (req, res) => {
         });
     }
 
-    var ArticleModel = new Article({
-        date: req.body.date,
-        hour: req.body.hour,
-        title: req.body.title,
-        corpus: req.body.corpus,
-        mainImg: req.body.mainImg,
-        tags: eval(req.body.tags)
-    });
-    ArticleModel.save(function (err) {
-        if (err) return console.log(err);
-        // Bob now has his story
+    let updatedCorpus = req.body.corpus;
+    updatedCorpus = updatedCorpus.replace(/\*/g, "+");
+
+    Article.find({}, function (err, res) {
+        if (err) console.log(err);
+        if (res) {
+            let count = res.length+1;
+            var ArticleModel = new Article({
+                date: req.body.date,
+                hour: req.body.hour,
+                title: req.body.title,
+                corpus: updatedCorpus,
+                mainImg: req.body.mainImg,
+                tags: eval(req.body.tags),
+                isVisible: "false",
+                order: count
+            });
+        }
+
+        ArticleModel.save(function (err) {
+            if (err) return console.log(err);
+            // Bob now has his story
+        });
     });
     return res.status(200).end('Success');
 });
 
-router.post('/getArticles', (req, res) => {
-
+router.post('/back/getArticles', (req, res) => {
 //looks at our Article Schema
     Article.find(function (err, articles) {
         if (err)
             res.send(err);
         //responds with a json object of our database comments.
         res.json(articles)
-    });
-
+    }).sort({order: -1});
 });
 
-router.delete('/deleteArticle', (req, res) => {
+router.post('/front/getArticles', (req, res) => {
+//looks at our Article Schema
+    Article.find({isVisible: "true"}, function (err, articles) {
+        if (err)
+            res.send(err);
+        //responds with a json object of our database comments.
+        res.json(articles)
+    }).sort({order: -1});
+});
+
+router.delete('/back/deleteArticle', (req, res) => {
     Article.find({_id: req.query._id}).remove().exec()
     return res.status(200).end('Success');
 });
 
-router.post('/getArticle', (req, res) => {
+router.post('/back/getArticle', (req, res) => {
     Article.findById({_id: req.body.params._id}, function (err, article) {
         if (err)
             res.send(err);
@@ -109,7 +127,8 @@ router.post('/getArticle', (req, res) => {
     });
 });
 
-router.post('/updateArticle', (req, res) => {
+
+router.post('/back/updateArticle', (req, res) => {
     const validationResult = checkArticleForm(req.body);
     if (!validationResult.success) {
         return res.status(400).json({
@@ -119,22 +138,24 @@ router.post('/updateArticle', (req, res) => {
         });
     }
 
+    console.log('mainImg', req.body.mainImg)
+    let updatedCorpus = req.body.corpus;
+    updatedCorpus = updatedCorpus.replace(/\*/g, "+");
+
     var update = {
         date: req.body.date,
         hour: req.body.hour,
         title: req.body.title,
-        corpus: req.body.corpus,
+        corpus: updatedCorpus,
         mainImg: req.body.mainImg,
-        tags: eval(req.body.tags)
+        tags: eval(req.body.tags),
+        isVisible: "false"
     };
-
-    console.log('corpus', req.body.corpus)
-
 
     var query = {"_id": req.get('key')};
     var options = {new: true};
 
-    Article.findOneAndUpdate(query, update, options, function(err, person) {
+    Article.findOneAndUpdate(query, update, options, function (err) {
         if (err) {
             console.log('got an error');
         }
@@ -144,8 +165,21 @@ router.post('/updateArticle', (req, res) => {
     return res.status(200).end('Success');
 });
 
-router.post('/previewArticle', (req, res) => {
-    Article.findById({_id: req.body.params._id}, function (err, article) {
+router.post('/back/previewArticle', (req, res) => {
+    let key = req.body.params.title.split("-");
+    key = key[key.length - 1];
+    Article.findById({_id: key}, function (err, article) {
+        if (err)
+            res.send(err);
+        //responds with a json object of our database comments.
+        res.json(article)
+    });
+});
+
+router.post('/front/Article', (req, res) => {
+    let key = req.body.params.title.split("-");
+    key = key[key.length - 1];
+    Article.findById({_id: key}, function (err, article) {
         if (err)
             res.send(err);
         //responds with a json object of our database comments.

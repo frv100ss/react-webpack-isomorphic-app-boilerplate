@@ -1,0 +1,157 @@
+.articles-preview-container {
+  display: inline-block;
+  width:100%;
+  text-align: left;
+
+  .article-preview-box{
+    display:inline-table
+  }
+  .article-menu-item {
+    position: relative;
+    top: 0;
+    height: 30px;
+    background-color: #00BCD4;
+    opacity: 1;
+    .iu-deletePreview {
+      position: absolute !important;
+      top: -9px;
+      left: 240px;
+      height: 12px;
+      div {
+        svg {
+          color: whitesmoke !important
+          height: 18px !important
+          &:hover {
+            transform: scale(1.7) !important
+            color: orange !important
+          }
+        }
+      }
+
+    }
+
+    .iu-editPreview {
+      position: absolute !important;
+      top: -9px;
+      left: 210px;
+      opacity 1
+      div {
+        svg {
+          color: whitesmoke !important
+          height: 18px !important
+          &:hover {
+            transform: scale(1.7) !important
+            color: orange !important
+
+          }
+        }
+      }
+
+    }
+
+    .iu-showPreview {
+      position: absolute !important;
+      top: -9px;
+      left: 178px;
+      div {
+        svg {
+          color: whitesmoke !important
+          height: 18px !important
+          &:hover {
+            transform: scale(1.7) !important
+            color: orange !important
+          }
+        }
+      }
+    }
+    .iu-Up {
+      position: absolute !important;
+      top: 0px;
+      left: 55px;
+      color: white;
+      font-size: 22px;
+      cursor pointer;
+      &:hover {
+        transform: scale(1.7) !important
+        color: orange !important
+        transition-duration: .5s;
+      }
+      &-disabled{
+        position: absolute !important;
+        top: 0px;
+        left: 55px;
+        color: white;
+        font-size: 22px;
+        cursor pointer;
+        opacity: 0.2
+      }
+
+    }
+    .iu-Down {
+      position: absolute !important;
+      top: 0px;
+      left: 80px;
+      color: white;
+      font-size: 22px;
+      cursor pointer;
+      &:hover {
+        transform: scale(1.7) !important
+        color: orange !important
+        transition-duration: .5s;
+      }
+      &-disabled{
+        position: absolute !important;
+        top: 0px;
+        left: 80px;
+        color: white;
+        font-size: 22px;
+        cursor pointer;
+        opacity: 0.2
+      }
+    }
+    .iu-Toggle {
+      top: 3px;
+      left: -5px;
+      width: 30px !important;
+      div {
+        svg {
+          color: whitesmoke !important
+          height: 18px !important
+          &:hover {
+            transform: scale(1.7) !important
+            color: orange !important
+          }
+        }
+      }
+
+    }
+
+  }
+
+  .article-preview-title {
+    position relative
+    top: 150px;
+    height: 50px;
+    background-color darkslategrey
+    z-index 2
+    opacity 0.8
+    padding: 0 5px
+
+    a {
+      color: #FFF;
+      opacity 1
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+      position: relative;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+  }
+  .article-preview-img {
+    height: 200px
+    width: 275px
+    position absolute
+    z-index 1
+  }
+}

@@ -1,0 +1,180 @@
+.article-preview-container-home {
+  display: inline-block;
+  width: 100%;
+}
+.article-preview-container-home .boxes {
+  display: inline-table;
+}
+.article-preview-container-home .boxes a {
+  display: inline-block;
+}
+.article-preview-container-home .article-menu-item {
+  position: relative;
+  top: 0;
+  height: 30px;
+  background-color: #00bcd4;
+  opacity: 1;
+}
+.article-preview-container-home .article-preview-title {
+  position: relative;
+  top: 150px;
+  height: 75px;
+  background-color: #2f4f4f;
+  z-index: 2;
+  opacity: 0.8;
+  padding: 0 5px;
+  cursor: pointer;
+  display: grid;
+}
+.article-preview-container-home .article-preview-title a {
+  color: #fff;
+  opacity: 1;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  margin-top: 13px;
+}
+.article-preview-container-home .article-preview-title a:hover {
+  color: #ffae0c;
+}
+.article-preview-container-home .article-preview-img {
+  cursor: pointer;
+  height: 225px;
+  width: 305px;
+  position: absolute;
+  z-index: 1;
+}
+.article-preview-container-home .section-header {
+  position: relative;
+  z-index: 999;
+  margin: 40px 0 20px;
+  text-align: center;
+}
+.article-preview-container-home .section-header::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 40%;
+  z-index: 1;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ebebeb;
+}
+.article-preview-container-home .section-header-main-text {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 0 10px;
+  max-width: 75%;
+  width: auto;
+  background-color: #fff;
+  line-height: 40px;
+  text-transform: uppercase;
+  font-size: 36px;
+  color: #e1001b;
+}
+.article-preview-container-home .boxes-une {
+  margin: 0 auto 30px !important;
+}
+.article-preview-container-home .boxes-une .article-preview-img {
+  cursor: pointer;
+  height: 35vw;
+  width: 100%;
+  max-width: 61vw;
+  position: relative;
+  z-index: 1;
+}
+.article-preview-container-home .boxes-une .article-preview-title-une {
+  position: relative;
+  bottom: 50px;
+  text-align: center;
+  z-index: 2;
+  opacity: 1;
+  padding: 0 5px;
+  cursor: pointer;
+}
+.article-preview-container-home .boxes-une .article-preview-title-une a {
+  color: #000;
+  font-size: 16px;
+  padding: 5px 15px;
+  display: inline;
+  background: #f7961d;
+  opacity: 1;
+  text-align: center;
+  position: relative;
+  margin-top: 13px;
+}
+.article-preview-container-home .boxes-une .article-preview-title-une a:hover {
+  color: #fffdfe;
+}
+@media (max-width: 768px) {
+  .article-container {
+    width: 100% !important;
+    padding: 15px 14px !important;
+    font-size: 12px;
+    line-height: 30px;
+  }
+  .article-container .btnClose {
+    right: 2% !important;
+  }
+  .article-container h2 {
+    font-size: 20px;
+  }
+  .article-preview-container-home .boxes-une {
+    margin: 0 auto 15px !important;
+    width: 100% !important;
+    height: 55vw !important;
+  }
+  .article-preview-container-home .boxes-une .article-preview-title-une a {
+    font-size: 12px;
+    line-height: 20px;
+    padding: 1px 10px;
+  }
+  .article-preview-container-home .boxes-une .article-preview-img {
+    cursor: pointer;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  .article-preview-container-home .boxes {
+    margin: 10px auto 10px !important;
+    width: 100% !important;
+    height: 55vw !important;
+    display: inline-block;
+  }
+  .article-preview-container-home .boxes .article-preview-img {
+    cursor: pointer;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  .article-preview-container-home .article-preview-title {
+    position: relative;
+    top: -48px;
+    height: 45px;
+    background-color: #2f4f4f;
+    z-index: 2;
+    opacity: 0.8;
+    padding: 0 5px;
+    cursor: pointer;
+  }
+  .article-preview-container-home .article-preview-title a {
+    color: #fff;
+    opacity: 1;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    font-size: 13px;
+    position: relative;
+    margin-top: 8px;
+  }
+  .article-preview-container-home .article-preview-title a:hover {
+    color: #ffae0c;
+  }
+}

@@ -28,12 +28,8 @@ var commonLoaders = [
         loader: 'json-loader'
     },
     {
-        test: /\.png$/,
-        loader: "url-loader"
-    },
-    {
-        test: /\.jpg$/,
-        loader: "file-loader"
+        test: /\.(png|jpg|gif|jpeg|)$/,
+        loader: 'url-loader?limit=500000'
     }];
 
 const config = [

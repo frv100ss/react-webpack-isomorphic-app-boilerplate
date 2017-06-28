@@ -43,6 +43,10 @@ const config = {
             {
                 test: /\.css/,
                 use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(png|jpg|gif|jpeg|)$/,
+                loader: 'url-loader?limit=500000'
             }
         ],
         loaders: [
@@ -58,7 +62,8 @@ const config = {
                 query: {
                     limit: 10000,
                     name: 'static/media/[name].[hash:8].[ext]'
-                }
+                },
+
             },
         ]
     },

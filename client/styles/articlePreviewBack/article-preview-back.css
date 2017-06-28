@@ -1,0 +1,138 @@
+.articles-preview-container {
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+}
+.articles-preview-container .article-preview-box {
+  display: inline-table;
+}
+.articles-preview-container .article-menu-item {
+  position: relative;
+  top: 0;
+  height: 30px;
+  background-color: #00bcd4;
+  opacity: 1;
+}
+.articles-preview-container .article-menu-item .iu-deletePreview {
+  position: absolute !important;
+  top: -9px;
+  left: 240px;
+  height: 12px;
+}
+.articles-preview-container .article-menu-item .iu-deletePreview div svg {
+  color: #f5f5f5 !important;
+  height: 18px !important;
+}
+.articles-preview-container .article-menu-item .iu-deletePreview div svg:hover {
+  transform: scale(1.7) !important;
+  color: #ffa500 !important;
+}
+.articles-preview-container .article-menu-item .iu-editPreview {
+  position: absolute !important;
+  top: -9px;
+  left: 210px;
+  opacity: 1;
+}
+.articles-preview-container .article-menu-item .iu-editPreview div svg {
+  color: #f5f5f5 !important;
+  height: 18px !important;
+}
+.articles-preview-container .article-menu-item .iu-editPreview div svg:hover {
+  transform: scale(1.7) !important;
+  color: #ffa500 !important;
+}
+.articles-preview-container .article-menu-item .iu-showPreview {
+  position: absolute !important;
+  top: -9px;
+  left: 178px;
+}
+.articles-preview-container .article-menu-item .iu-showPreview div svg {
+  color: #f5f5f5 !important;
+  height: 18px !important;
+}
+.articles-preview-container .article-menu-item .iu-showPreview div svg:hover {
+  transform: scale(1.7) !important;
+  color: #ffa500 !important;
+}
+.articles-preview-container .article-menu-item .iu-Up {
+  position: absolute !important;
+  top: 0px;
+  left: 55px;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+.articles-preview-container .article-menu-item .iu-Up:hover {
+  transform: scale(1.7) !important;
+  color: #ffa500 !important;
+  transition-duration: 0.5s;
+}
+.articles-preview-container .article-menu-item .iu-Up-disabled {
+  position: absolute !important;
+  top: 0px;
+  left: 55px;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 0.2;
+}
+.articles-preview-container .article-menu-item .iu-Down {
+  position: absolute !important;
+  top: 0px;
+  left: 80px;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+.articles-preview-container .article-menu-item .iu-Down:hover {
+  transform: scale(1.7) !important;
+  color: #ffa500 !important;
+  transition-duration: 0.5s;
+}
+.articles-preview-container .article-menu-item .iu-Down-disabled {
+  position: absolute !important;
+  top: 0px;
+  left: 80px;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 0.2;
+}
+.articles-preview-container .article-menu-item .iu-Toggle {
+  top: 3px;
+  left: -5px;
+  width: 30px !important;
+}
+.articles-preview-container .article-menu-item .iu-Toggle div svg {
+  color: #f5f5f5 !important;
+  height: 18px !important;
+}
+.articles-preview-container .article-menu-item .iu-Toggle div svg:hover {
+  transform: scale(1.7) !important;
+  color: #ffa500 !important;
+}
+.articles-preview-container .article-preview-title {
+  position: relative;
+  top: 150px;
+  height: 50px;
+  background-color: #2f4f4f;
+  z-index: 2;
+  opacity: 0.8;
+  padding: 0 5px;
+}
+.articles-preview-container .article-preview-title a {
+  color: #fff;
+  opacity: 1;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  margin-top: 10px;
+  font-size: 12px;
+}
+.articles-preview-container .article-preview-img {
+  height: 200px;
+  width: 275px;
+  position: absolute;
+  z-index: 1;
+}

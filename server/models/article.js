@@ -9,7 +9,8 @@ const ArticleSchema = new Schema({
     corpus: String,
     tags: Array,
     mainImg:String,
-
+    isVisible:Boolean,
+    order:Number
 });
 
 module.exports = mongoose.model('Article', ArticleSchema);

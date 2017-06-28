@@ -1,4 +1,6 @@
 @import "quill/quill.snow.css"
+@import "articlePreviewBack/article-preview-back.css"
+@import "articlePreviewFront/article-preview-front.css"
 
 body {
   margin: 0;
@@ -22,8 +24,9 @@ a:hover {
 }
 
 .top-bar {
-  margin-top:23px
+  margin-top: 23px
 }
+
 .top-bar::after {
   content: '';
   display: block;
@@ -42,6 +45,9 @@ a:hover {
 .top-bar a,
 .nav a {
   margin: 0 8px;
+  display: inline;
+  color: white
+  cursor pointer
 }
 
 .container {
@@ -49,8 +55,10 @@ a:hover {
   text-align: center;
   width: 90%;
   padding-bottom 20px
-  a{
+
+  a {
     color: #236fff
+    display inline
     &:hover {
       color: #2a3682
     }
@@ -75,20 +83,23 @@ a:hover {
   color: green;
 }
 
-  .article-form{
-    margin: 30px auto 0 auto
-    padding: 15px
-    width: 90%;
+.article-form {
+  margin: 30px auto 0 auto
+  padding: 15px
+  width: 90%;
+  .ql-snow a{
+    display: inline;
   }
+}
 
-    label.iu-label{
-      font-size 12px
-      color: #BDBDBD !important
-    }
+label.iu-label {
+  font-size 12px
+  color: #BDBDBD !important
+}
 
 button::-moz-focus-inner,
 input[type=button]::-moz-focus-inner,
-input[type=file]>input[type=button]::-moz-focus-inner,
+input[type=file] > input[type=button]::-moz-focus-inner,
 input[type=reset]::-moz-focus-inner,
 input[type=submit]::-moz-focus-inner {
   border: none
@@ -133,7 +144,7 @@ input[type=submit]::-moz-focus-inner {
   justify-content: center
 }
 
-.iu-button-container .iu-button-button>span {
+.iu-button-container .iu-button-button > span {
   display: inherit;
   font-weight: 100;
   font-size: 2em;
@@ -141,7 +152,7 @@ input[type=submit]::-moz-focus-inner {
   transition: opacity .3s .1s
 }
 
-.iu-button-container .iu-button-button>svg {
+.iu-button-container .iu-button-button > svg {
   position: absolute;
   width: 54px;
   height: 54px;
@@ -150,7 +161,7 @@ input[type=submit]::-moz-focus-inner {
   pointer-events: none
 }
 
-.iu-button-container .iu-button-button>svg path {
+.iu-button-container .iu-button-button > svg path {
   opacity: 0;
   fill: none
 }
@@ -193,7 +204,7 @@ input[type=submit]::-moz-focus-inner {
   transition: all .15s
 }
 
-.iu-button-container.loading .iu-button-button .iu-button-progress-circle>path {
+.iu-button-container.loading .iu-button-button .iu-button-progress-circle > path {
   opacity: 1;
   -webkit-transition: opacity .15s .3s;
   transition: opacity .15s .3s
@@ -211,7 +222,7 @@ input[type=submit]::-moz-focus-inner {
   transition: all .15s
 }
 
-.iu-button-container.success .iu-button-button .iu-button-checkmark>path {
+.iu-button-container.success .iu-button-button .iu-button-checkmark > path {
   opacity: 1
 }
 
@@ -227,15 +238,15 @@ input[type=submit]::-moz-focus-inner {
   transition: all .15s
 }
 
-.iu-button-container.error .iu-button-button .iu-button-cross>path {
+.iu-button-container.error .iu-button-button .iu-button-cross > path {
   opacity: 1
 }
 
 .iu-button-container.error,
 .iu-button-container.loading,
 .iu-button-container.success {
-  width: 100%!important;
-  height: 100%!important
+  width: 100% !important;
+  height: 100% !important
 }
 
 @-webkit-keyframes a {
@@ -282,7 +293,7 @@ input[type=submit]::-moz-focus-inner {
 }
 
 .iu-container.disabled .iu-loadContainer .iu-dropzone {
-  background: transparent!important
+  background: transparent !important
 }
 
 .iu-container.disabled .iu-deletePreview,
@@ -365,11 +376,11 @@ input[type=submit]::-moz-focus-inner {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  width: 100%!important;
-  height: 100%!important;
-  border-width: 1px!important;
-  border-style: solid!important;
-  border-radius: 10px!important
+  width: 100% !important;
+  height: 100% !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-radius: 10px !important
 }
 
 .iu-dropzone:hover {
@@ -391,7 +402,7 @@ input[type=submit]::-moz-focus-inner {
 }
 
 .iu-pseudobuttonContent {
-  line-height: 1!important
+  line-height: 1 !important
 }
 
 .iu-notification {
@@ -412,131 +423,52 @@ input[type=submit]::-moz-focus-inner {
   background-color: rgba(0, 0, 0, .3)
 }
 
-  .corpus{
-    font-size :12px;
-    padding-bottom:20px;
-    padding-top 20px
-    color: rgba(0, 0, 0, 0.3)
-    //font-weight bold
-  }
+.corpus {
+  font-size: 12px;
+  padding-bottom: 20px;
+  padding-top 20px
+  color: rgba(0, 0, 0, 0.3)
+}
 
-  .button-line{
-    .article-preview-container{
-      display: flex
-      flex-direction row
-      flex-wrap wrap
+a {
+  color: #236fff;
+  opacity 1
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  margin-top: 85px;
+}
 
-  .article-menu-item{
-        position: relative;
-        top: 0;
-        height: 30px;
-        background-color: #00BCD4;
-        opacity: 1;
-        .iu-deletePreview{
-          position: absolute;
-          top: -9px;
-          left: 240px;
-          height:12px;
-          div{
-            svg{
-              color: whitesmoke !important
-              height:18px !important
-              &:hover{
-                transform: scale(1.7) !important
-                color:orange !important
-
-              }
-            }
-          }
-
-        }
-
-        .iu-editPreview{
-          position: absolute;
-          top: -9px;
-          left: 160px;
-          opacity 1
-          div{
-            svg{
-              color: whitesmoke !important
-              height:18px !important
-              &:hover{
-                transform: scale(1.7) !important
-                color:orange !important
-
-              }
-            }
-          }
-
-        }
-
-        .iu-showPreview{
-          position: absolute;
-          top: -9px;
-          left: 80px;
-          div{
-            svg{
-              color: whitesmoke  !important
-              height:18px !important
-              &:hover{
-                transform: scale(1.7) !important
-                color:orange !important
-              }
-
-            }
-          }
-
-        }
-      }
-
-      .article-preview-title{
-        position relative
-        top: 150px;
-        height: 50px;
-        background-color darkslategrey
-        z-index 2
-        opacity 0.8
-        a{
-          color: #FFF;
-          opacity 1
-          display: inline-block;
-          text-align: center;
-          width: 100%;
-          position: relative;
-          margin-top: 5px;
-        }
-      }
-      .article-preview-img{
-        height:200px
-        width:275px
-        position absolute
-        z-index 1
-      }
-    }
+.button-line{
+  .create-article-container{
     a{
-      color: #236fff;
-      opacity 1
-      display: inline-block;
-      text-align: center;
-      width: 100%;
-      margin-top: 85px;
+      display inline-block
     }
   }
+}
 
-    @media screen and (max-width:768px){
-      .container{
-        width:95%
-        margin 0 auto
-        padding:0
-        overflow-x:hidden
-      }
-      .article-preview-container {
-        justify-content center
-      }
-      .button-line{
-        .create-article-container{
-          margin : 7px auto !important
-          padding 0 !important
-        }
-      }
+@media (max-width: 992px) {
+  .container, .articles-preview-container, .articles-preview-container-home {
+    width: 98% !important
+    margin 0 auto
+    padding: 0
+    overflow-x: hidden
+    text-align: center !important;
+  }
+
+
+  .article-preview-container {
+    //justify-content center
+  }
+
+  .article-preview-container-home {
+    //justify-content center
+  }
+
+  .button-line {
+    .create-article-container {
+      margin: 7px auto !important
+      padding 0 !important
     }
+  }
+}

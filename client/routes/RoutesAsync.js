@@ -37,26 +37,29 @@ export function asyncComponent(getComponent) {
 
 
 export const HomePageSwitcher = asyncComponent(() =>
-    System.import('../containers/HomePageSwitcher').then(module => module.default)
+    System.import('../frontOffice/containers/HomePageSwitcher').then(module => module.default)
 );
 
 export const LoginPage = asyncComponent(() =>
-    System.import('../containers/LoginPage').then(module => module.default)
+    System.import('../frontOffice/containers/LoginPage').then(module => module.default)
 );
 
 export const SignUpPage = asyncComponent(() =>
-    System.import('../containers/SignUpPage').then(module => module.default)
+    System.import('../frontOffice/containers/SignUpPage').then(module => module.default)
 );
 export const CreateArticlePage = asyncComponent(() =>
-    System.import('../containers/CreateArticlePage').then(module => module.default)
+    System.import('../backOffice/containers/CreateArticlePage').then(module => module.default)
 );
 
 export const UpdateArticlePage = asyncComponent(() =>
-    System.import('../containers/UpdateArticlePage').then(module => module.default)
+    System.import('../backOffice/containers/UpdateArticlePage').then(module => module.default)
 );
 
 export const PreviewArticlePage = asyncComponent(() =>
-    System.import('../containers/PreviewArticlePage').then(module => module.default)
+    System.import('../backOffice/containers/PreviewArticlePage').then(module => module.default)
+);
+export const ArticlePage = asyncComponent(() =>
+    System.import('../frontOffice/containers/ArticlePage').then(module => module.default)
 );
 
 
