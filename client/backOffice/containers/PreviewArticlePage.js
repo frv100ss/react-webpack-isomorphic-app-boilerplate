@@ -4,7 +4,9 @@ import axios from "axios";
 import Chip from 'material-ui/Chip';
 import {Card} from 'material-ui/Card';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-// import ContentDelete from 'material-ui/svg-icons/content/a';
+
+const dateFormat = require('dateformat');
+
 const canUseDOM = !!(
     typeof window !== 'undefined' &&
     window.document &&
@@ -26,6 +28,12 @@ const styles = {
         marginTop: 25,
         border:"1px solid orange",
     },
+    date:{
+
+    },
+    update:{
+
+    },
     title: {
         fontSize: 20,
         marginBottom: 20,
@@ -46,7 +54,8 @@ const styles = {
         paddingRight: 40,
         paddingTop:20,
         textAlign: 'left',
-        width: "90%"
+        width: "90%",
+        margin:"0 auto"
     },
     mainImg:{
         width:"100%"
@@ -98,13 +107,19 @@ class PreviewArticlePage extends React.Component {
     render() {
 
         return (
-            <Card className="container" style={styles.wrapper}>
+            <Card className="preview-container" style={styles.wrapper}>
                 {this.state.article.tags && this.state.article.tags.map((tag, key) =>
                     <Chip key={key} style={styles.tags}>
                         {tag}
                     </Chip>
                 )}
                 <hr style={styles.hr}/>
+                {this.state.article.date && this.state.article.hour &&
+                <time datetime={this.state.article.date} style={styles.date}>Publié le {dateFormat(this.state.article.date, "UTC:dd/mm/yyyy")} à {dateFormat(this.state.article.hour, "UTC:HH'h'MM")} </time>
+                }
+                {this.state.article.updateDate && this.state.article.updateHour &&
+                <time datetime={this.state.article.updateDate} style={styles.update}>| Mis à jour le {dateFormat(this.state.article.updateDate, "UTC:dd/mm/yyyy")} à {dateFormat(this.state.article.updateHour, "UTC:HH'h'MM")}</time>
+                }
                 {this.state.article.title && <h1 style={styles.title}>{this.state.article.title}</h1> }
                 <FloatingActionButton style={styles.btnClose} onClick={()=>this.handleButtonClose()}>
                     <div>X</div>

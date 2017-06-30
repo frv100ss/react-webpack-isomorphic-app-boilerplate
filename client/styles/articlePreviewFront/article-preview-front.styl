@@ -1,8 +1,9 @@
 .article-preview-container-home {
-  display: inline-block;
+  display: block;
   width: 100%;
+  padding:10px 0;
   .boxes {
-    display: inline-table
+    display: inline-block
     a{
       display: inline-block
     }
@@ -15,9 +16,9 @@
     opacity: 1;
   }
   .article-preview-title {
-    position relative
-    top: 150px;
-    height: 75px;
+    position: relative;
+    top: -7.3vw;
+    height: 7vw;
     background-color darkslategrey
     z-index 2
     opacity 0.8
@@ -26,6 +27,7 @@
     display: grid
     a {
       color: #FFF;
+      font-size:1.5vw;
       opacity 1
       display: inline-block;
       text-align: center;
@@ -40,9 +42,8 @@
   }
   .article-preview-img {
     cursor pointer
-    height: 225px
-    width: 305px
-    position absolute
+    height: 100%
+    width: 30
     z-index 1
   }
 
@@ -78,7 +79,7 @@
     }
   }
   .boxes-une {
-    margin: 0 auto 30px !important;
+    margin: 0 auto 10px !important;
     .article-preview-img {
       cursor pointer
       height: 35vw
@@ -89,7 +90,7 @@
     }
     .article-preview-title-une {
       position relative
-      bottom: 50px;
+      bottom: 70px;
       text-align: center;
       z-index 2
       opacity 1
@@ -105,16 +106,25 @@
         text-align: center;
         position: relative;
         margin-top: 13px;
+        line-height:28px;
         &:hover {
           color: #fffdfe;
-
         }
       }
     }
   }
 }
 
+@media (max-width: 992px) {
+  .container{
+    .btnClose{
+      right:2% !important
+    }
+  }
+}
+
 @media (max-width: 768px) {
+
 .article-container{
   width:100% !important;
   padding:15px 14px !important
@@ -128,15 +138,14 @@
     font-size:20px;
   }
 }
-
   .article-preview-container-home {
     .boxes-une {
-      margin: 0 auto 15px !important
+      margin: 0 auto 0px !important
       width: 100% !important
-      height: 55vw !important
+      height: 60vw !important
       .article-preview-title-une{
         a{
-          font-size: 12px;
+          font-size: 15px;
           line-height:20px;
           padding:1px 10px
         }
@@ -152,10 +161,10 @@
 
     }
       .boxes {
-        margin: 10px auto 10px !important;
+        margin: 0px auto 0px !important;
         width: 100% !important
-        height: 55vw !important
-        display: inline-block;
+        height: 60vw !important
+        display: block;
         .article-preview-img {
           cursor pointer
           width: 100% !important;

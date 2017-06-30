@@ -40,6 +40,20 @@ export function articleHour(hour) {
     }
 }
 
+export function articleUpdateDate(date) {
+    return {
+        type: "ARTICLE_UPDATE_DATE",
+        data: date
+    }
+}
+
+export function articleUpdateHour(hour) {
+    return {
+        type: "ARTICLE_UPDATE_HOUR",
+        data: hour
+    }
+}
+
 
 export function articleAddTag(tag) {
     return {

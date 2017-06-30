@@ -4,8 +4,8 @@ import Paper from 'material-ui/Paper';
 
 const styles = {
     paper: {
-        height: 225,
-        width: 305,
+        height: "20vw",
+        width: "30vw",
         margin: 7,
         textAlign: 'left',
         marginBottom: 15
@@ -15,7 +15,7 @@ const styles = {
         width: "61vw",
         margin: 7,
         textAlign: 'left',
-        marginBottom: 15
+        marginBottom: 5
     },
 
 };

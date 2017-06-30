@@ -4,8 +4,22 @@ import {Link} from "react-router-dom";
 import {Card, CardText} from "material-ui/Card";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+
+const styles = {
+    btnClose: {
+        position: 'absolute',
+        top: 100,
+        right: "7%"
+    }
+};
+
+const handleButtonClose = props => {
+    props.history.push('/')
+};
 
 const LoginForm = ({
+    props,
     onSubmit,
     onChange,
     errors,
@@ -13,6 +27,9 @@ const LoginForm = ({
     user
 }) => (
     <Card className="container">
+        <FloatingActionButton className="btnClose" style={styles.btnClose} onClick={() => handleButtonClose(props)}>
+            <div>X</div>
+        </FloatingActionButton>
         <form action="/" onSubmit={onSubmit}>
             <h2 className="card-heading">Se connecter</h2>
 

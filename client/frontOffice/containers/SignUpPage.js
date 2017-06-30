@@ -94,6 +94,7 @@ class SignUpPage extends React.Component {
                 {this.state.redirectToLoginPage ?
                     <Redirect to={{pathname: this.state.redirectToLoginPage}}/> :
                     <SignUpForm
+                        props={this.props}
                         onSubmit={this.processForm}
                         onChange={this.handleChange}
                         errors={this.state.errors}

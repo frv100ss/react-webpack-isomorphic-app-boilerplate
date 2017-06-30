@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import Drawer from 'material-ui/Drawer';
-import Auth from '../../modules/Auth';
+import Auth from './modules/Auth';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
@@ -13,9 +13,7 @@ const styles = {
     },
 };
 
-
 class TopNav extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {open: false};
@@ -29,7 +27,7 @@ class TopNav extends React.Component {
     render() {
         return (
             <AppBar style={{height: "60px", marginBottom: "30px"}}
-                    title={<span style={styles.title}>React-App</span>}
+                    title={<span style={styles.title}>Reactions-Presse.fr</span>}
                     onTitleTouchTap={this.handleHomePage}
                     onLeftIconButtonTouchTap={this.handleMenu}
             >
@@ -53,21 +51,19 @@ class TopNav extends React.Component {
                                 <MenuItem style={{color: "white"}}>Actu Politique Internationale</MenuItem>
                             </div>
                         )}
-
+                    <div className="top-bar">
+                        {Auth.isUserAuthenticated() ? (
+                            <div className="top-bar-right">
+                                <Link onClick={this.handleMenu} to="/logout">Se déconnecter</Link>
+                            </div>
+                        ) : (
+                            <div className="top-bar-right">
+                                <Link onClick={this.handleMenu} to="/login">Se connecter</Link>
+                                <Link onClick={this.handleMenu} to="/signup">S'inscrire</Link>
+                            </div>
+                        )}
+                    </div>
                 </Drawer>
-
-                <div className="top-bar">
-                    {Auth.isUserAuthenticated() ? (
-                        <div className="top-bar-right">
-                            <Link to="/logout">Se déconnecter</Link>
-                        </div>
-                    ) : (
-                        <div className="top-bar-right">
-                            <Link to="/login">Se connecter</Link>
-                            <Link to="/signup">S'inscrire</Link>
-                        </div>
-                    )}
-                </div>
             </AppBar>
         )
     }

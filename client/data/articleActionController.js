@@ -27,6 +27,18 @@ export function CreateArticle(state = initialState, action) {
             });
             break;
 
+        case "ARTICLE_UPDATE_DATE":
+            return update(state, {
+                updateDate: {$set: action.data}
+            });
+            break;
+
+        case "ARTICLE_UPDATE_HOUR":
+            return update(state, {
+                updateHour: {$set: action.data}
+            });
+            break;
+
         case "ARTICLE_ADD_TAG":
             return update(state, {
                 tags: {$set: [action.data]}

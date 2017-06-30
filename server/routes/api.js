@@ -137,14 +137,14 @@ router.post('/back/updateArticle', (req, res) => {
             errors: validationResult.errors
         });
     }
-
-    console.log('mainImg', req.body.mainImg)
     let updatedCorpus = req.body.corpus;
     updatedCorpus = updatedCorpus.replace(/\*/g, "+");
 
+    console.log('lil', req.body)
+
     var update = {
-        date: req.body.date,
-        hour: req.body.hour,
+        updateDate: req.body.updateDate,
+        updateHour: req.body.updateHour,
         title: req.body.title,
         corpus: updatedCorpus,
         mainImg: req.body.mainImg,
@@ -153,7 +153,7 @@ router.post('/back/updateArticle', (req, res) => {
     };
 
     var query = {"_id": req.get('key')};
-    var options = {new: true};
+    var options = {new: false};
 
     Article.findOneAndUpdate(query, update, options, function (err) {
         if (err) {

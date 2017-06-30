@@ -25,7 +25,7 @@ class TimePickerArticle extends React.Component {
         this.setState({
             hour: hour
         });
-        action.articleHour(hour);
+        action.articleUpdateHour(hour);
     };
 
     handleCurrentTime(hour) {
@@ -36,7 +36,7 @@ class TimePickerArticle extends React.Component {
         this.setState({
             hour: hour
         });
-        action.articleHour(hour);
+        action.articleUpdateHour(hour);
     };
 
     componentDidMount(){

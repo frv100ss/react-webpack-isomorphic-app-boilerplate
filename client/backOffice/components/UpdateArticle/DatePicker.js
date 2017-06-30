@@ -27,7 +27,7 @@ class DatePickerArticle extends React.Component {
         this.setState({
             date: date
         });
-        action.articleDate(date);
+        action.articleUpdateDate(date);
     };
 
     handleCurrentDate(date) {
@@ -38,7 +38,7 @@ class DatePickerArticle extends React.Component {
         this.setState({
             date: date
         });
-        action.articleDate(date);
+        action.articleUpdateDate(date);
     };
 
     componentDidMount(){

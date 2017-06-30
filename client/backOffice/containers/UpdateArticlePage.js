@@ -52,15 +52,15 @@ class UpdateArticlePage extends React.Component {
         event.preventDefault();
         // create a string for an HTTP body message
         const {
-            date,
-            hour,
+            updateDate,
+            updateHour,
             title,
             corpus,
             tags,
             mainImg
         } = this.props;
 
-        const formData = `date=${date}&hour=${hour}&title=${title}&corpus=${corpus}&tags=${tags}&mainImg=${mainImg}`;
+        const formData = `updateDate=${updateDate}&updateHour=${updateHour}&title=${title}&corpus=${corpus}&tags=${tags}&mainImg=${mainImg}`;
         const key = this.props.match.params._id;
 
         // create an AJAX request
@@ -118,10 +118,10 @@ class UpdateArticlePage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        date: state.CreateArticle.date,
+        updateDate: state.CreateArticle.updateDate,
         title: state.CreateArticle.title,
         corpus: state.CreateArticle.corpus,
-        hour: state.CreateArticle.hour,
+        updateHour: state.CreateArticle.updateHour,
         tags: state.CreateArticle.tags,
         mainImg: state.CreateArticle.mainImg
     }

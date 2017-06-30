@@ -98,6 +98,7 @@ class LoginPage extends React.Component {
                 {this.state.redirectToDashboardPage
                     ? <Redirect to={{pathname: this.state.redirectToDashboardPage}}/>
                     : <LoginForm
+                        props={this.props}
                         onSubmit={this.processForm}
                         onChange={this.handleChange}
                         successMessage={this.state.successMessage}

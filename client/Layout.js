@@ -1,6 +1,6 @@
 import { Route} from 'react-router-dom'
 import React from "react";
-import TopNav from './frontOffice/components/TopNav'
+import TopNav from './TopNav'
 import {Redirect} from 'react-router-dom'
 import Auth from './modules/Auth';
 import * as Routes from './routes/Routes'

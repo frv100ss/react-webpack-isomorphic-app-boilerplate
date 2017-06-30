@@ -3,7 +3,8 @@ import axios from "axios";
 import Chip from 'material-ui/Chip';
 import {Card} from 'material-ui/Card';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-// import ContentDelete from 'material-ui/svg-icons/content/a';
+
+const dateFormat = require('dateformat');
 const canUseDOM = !!(
     typeof window !== 'undefined' &&
     window.document &&
@@ -45,7 +46,6 @@ const styles = {
         textAlign: 'left',
         width: "90%",
         margin: "0 auto"
-
     },
     mainImg: {
         width: "100%"
@@ -91,7 +91,6 @@ class ArticlePage extends React.Component {
             }
         }, 250);
     }
-
     /**
      * Render the component.
      */
@@ -105,6 +104,12 @@ class ArticlePage extends React.Component {
                     </Chip>
                 )}
                 <hr style={styles.hr}/>
+                {this.state.article.date && this.state.article.hour &&
+                <time datetime={this.state.article.date} style={styles.date}>Publié le {dateFormat(this.state.article.date, "UTC:dd/mm/yyyy")} à {dateFormat(this.state.article.hour, "UTC:HH'h'MM")}</time>
+                }
+                {this.state.article.updateDate && this.state.article.updateHour &&
+                <time datetime={this.state.article.updateDate} style={styles.update}>Mis à jour le {dateFormat(this.state.article.updateDate, "UTC:dd/mm/yyyy")} à {dateFormat(this.state.article.updateHour, "UTC:HH'h'MM")}</time>
+                }
                 {this.state.article.title &&
                 <h1 style={styles.title}>{this.state.article.title}</h1>
                 }

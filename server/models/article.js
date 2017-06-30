@@ -5,6 +5,8 @@ const Schema = mongoose.Schema;
 const ArticleSchema = new Schema({
     date: Date,
     hour:Date,
+    updateDate: Date,
+    updateHour:Date,
     title: String,
     corpus: String,
     tags: Array,
